@@ -1,0 +1,35 @@
+{
+  "name": "dashboard",
+  "version": "0.0.0",
+  "scripts": {
+    "start": "vite",
+    "build": "vite build",
+    "serve": "vite preview",
+    "prepare": "husky install",
+    "help": "package-json-help.js",
+    "lint": "eslint './src/**/*.{vue, js}'",
+    "lint:fix": "eslint --fix './src/**/*.{vue,js}'",
+    "npm:audit": "npm run _npm:audit:spec",
+    "reset": "npx rimraf node_modules && npm i",
+    "test": "react-scripts test  --watchAll=false",
+    "test:coverage": "npm test -- --coverage",
+    "test:watch": "react-scripts test --env=jsdom --watchAll"
+  },
+  "dependencies": {
+    "vue": "^3.0.5"
+  },
+  "devDependencies": {
+    "@commitlint/config-conventional": "^12.1.1",
+    "@vitejs/plugin-vue": "^1.2.1",
+    "@vue/compiler-sfc": "^3.0.5",
+    "commitlint": "^12.1.1",
+    "eslint": "^7.24.0",
+    "eslint-config-prettier": "^8.2.0",
+    "eslint-plugin-prettier": "^3.4.0",
+    "eslint-plugin-vue": "^7.9.0",
+    "husky": "^6.0.0",
+    "package-json-help": "^0.0.11",
+    "prettier": "^2.2.1",
+    "vite": "^2.1.5"
+  }
+}
