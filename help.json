@@ -1,0 +1,7 @@
+{
+  "start": "serve the project",
+  "build": "build the project",
+  "lint": "run linter",
+  "lint:fix": "run linter and fix all errors",
+  "reset": "remove all node modules and reinstall them"
+}

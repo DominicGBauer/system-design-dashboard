@@ -1,4 +1,4 @@
-# Joox Lite Moments Mod React Application :: Node Version <!-- omit in toc -->
+# System Design Dashboard Vue App :: Node Version <!-- omit in toc -->
 
 The Node version for this project is automatically managed by:
 
