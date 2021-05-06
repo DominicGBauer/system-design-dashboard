@@ -2,7 +2,7 @@
   <div>
     <h1>Project Dream Team Dashboard is a GO!!!</h1>
     <br> 
-    <h2> Viva la Dom! </h2>
+    <h2> Viva la Dom! Model 2</h2>
   </div>
 </template>
 
