@@ -33,7 +33,7 @@ export default defineComponent({
   setup: () => {
     const option = ref({
       title: {
-        text: 'Traffic Sources',
+        text: 'Traffic Source$',
         left: 'center',
       },
       tooltip: {
