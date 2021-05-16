@@ -1,17 +1,21 @@
 <template>
   <Heading />
+  <Introduction />
   <Dashboard />
+
 </template>
 
 <script>
 import Dashboard from './components/Dashboard.vue'
 import Heading from './components/Heading.vue'
+import Introduction from './components/Introduction.vue'
 
 export default {
   name: 'App',
   components: {
     Heading,
     Dashboard,
+    Introduction,
   },
 }
 </script>
