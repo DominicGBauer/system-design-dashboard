@@ -23,7 +23,7 @@ use([
 ])
 
 export default defineComponent({
-  name: 'HelloWorld',
+  name: 'Dashboard',
   components: {
     VChart,
   },
