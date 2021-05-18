@@ -2,11 +2,13 @@
   <Heading />
   <Introduction />
   <Dashboard />
+  <FAQ/>
 
 </template>
 
 <script>
 import Dashboard from './components/Dashboard.vue'
+import FAQ from './components/FAQ.vue'
 import Heading from './components/Heading.vue'
 import Introduction from './components/Introduction.vue'
 
@@ -16,6 +18,7 @@ export default {
     Heading,
     Dashboard,
     Introduction,
+    FAQ,
   },
 }
 </script>
