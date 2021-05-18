@@ -28,7 +28,7 @@ axios.get('/api').then((response) => {
 })
 
 export default defineComponent({
-  name: 'HelloWorld',
+  name: 'Dashboard',
   components: {
     VChart,
   },
