@@ -59,10 +59,10 @@ interested to know if you find a company with a beta that does!
     
     <h2> Why the emphasis on beta, if it’s not conclusive?</h2>
     <p>
-   Most individuals attempt to hold diversified portfolios to reduce unique risk. However, they know that
-their shares are tied together by a web of co-movements that determine the limit of the diversification
-benefits. This limit is determined by the market risk of their portfolio, and its beta precisely determines
-the sensitivity of the portfolio to market movements.
+    Most individuals attempt to hold diversified portfolios to reduce unique risk. However, they know that
+    their shares are tied together by a web of co-movements that determine the limit of the diversification
+    benefits. This limit is determined by the market risk of their portfolio, and its beta precisely determines
+    the sensitivity of the portfolio to market movements.
     </p>
         
     <h2> What exactly are R**2 and 1 − R**2</h2>
@@ -83,10 +83,6 @@ the sensitivity of the portfolio to market movements.
     by the square root of 12, i.e. (48.5%)/√
     12 = 14% per month.
     </p>
-
-
-
-
   </div>
 </template>
 
@@ -106,7 +102,7 @@ p {
 }
 
 div {
-  background-color: rgb(15, 52, 65);
+  background-color: rgb(168, 204, 218);
 
 }
 </style>
