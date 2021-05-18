@@ -13,6 +13,7 @@ import {
 } from 'echarts/components'
 import VChart, { THEME_KEY } from 'vue-echarts'
 import { ref, defineComponent } from 'vue'
+import axios from 'axios'
 
 use([
   CanvasRenderer,
@@ -21,6 +22,10 @@ use([
   TooltipComponent,
   LegendComponent,
 ])
+
+axios.get('/api').then((response) => {
+  console.log(response.data)
+})
 
 export default defineComponent({
   name: 'Dashboard',
