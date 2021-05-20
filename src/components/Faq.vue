@@ -113,7 +113,7 @@
 
 <script>
 export default {
-  name: 'FAQ',
+  name: 'Faq',
 }
 </script>
 
