@@ -4,6 +4,6 @@ import Heading from '@/components/Heading.vue'
 describe('Heading.vue', () => {
   it('renders the Heading text', () => {
     const wrapper = shallowMount(Heading, {})
-    expect(wrapper.text()).toMatch('AIFMRM Equity Risk Service Dashboard')
+    expect(wrapper.text()).toMatch('Project Dream Team Dashboard is a GO!!!')
   })
 })

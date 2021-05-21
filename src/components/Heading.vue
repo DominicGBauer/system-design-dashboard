@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>AIFMRM Equity Risk Service Dashboard</h1>
+    <h1>Project Dream Team Dashboard is a GO!!!</h1>
   </div>
 </template>
 
