@@ -23,7 +23,4 @@ h1 {
   margin: 40px 0;
 }
 
-div {
-  background-color: rgb(168, 204, 218);
-}
 </style>
