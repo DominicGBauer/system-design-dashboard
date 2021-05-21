@@ -3,7 +3,6 @@
   <Introduction />
   <Dashboard />
   <Faq />
-
 </template>
 
 <script>
