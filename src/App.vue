@@ -1,5 +1,6 @@
 <template>
   <Heading />
+  <Introduction />
   <LineGraph />
   <Faq />
   <WorkedExample />
@@ -9,12 +10,14 @@
 import LineGraph from './components/LineGraph.vue'
 import Heading from './components/Heading.vue'
 import Faq from './components/Faq.vue'
+import Introduction from './components/Introduction.vue'
 import WorkedExample from './components/WorkedExample.vue'
 
 export default {
   name: 'App',
   components: {
     Heading,
+    Introduction,
     LineGraph,
     Faq,
     WorkedExample,
