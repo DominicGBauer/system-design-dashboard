@@ -1,11 +1,12 @@
 <template>
   <Heading />
-  <Dashboard />
+  <LineGraph />
   <Faq />
+  <WorkedExample />
 </template>
 
 <script>
-import Dashboard from './components/Dashboard.vue'
+import LineGraph from './components/LineGraph.vue'
 import Heading from './components/Heading.vue'
 import Faq from './components/Faq.vue'
 
@@ -13,7 +14,7 @@ export default {
   name: 'App',
   components: {
     Heading,
-    Dashboard,
+    LineGraph,
     Faq,
   },
 }
@@ -26,7 +27,7 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin: 1rem;
+  margin: 2rem 10%;
   max-width: 100%;
 }
 </style>
