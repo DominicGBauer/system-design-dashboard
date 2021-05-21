@@ -9,6 +9,7 @@
 import LineGraph from './components/LineGraph.vue'
 import Heading from './components/Heading.vue'
 import Faq from './components/Faq.vue'
+import WorkedExample from './components/WorkedExample.vue'
 
 export default {
   name: 'App',
@@ -16,6 +17,7 @@ export default {
     Heading,
     LineGraph,
     Faq,
+    WorkedExample,
   },
 }
 </script>
