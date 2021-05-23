@@ -29,23 +29,27 @@ export default {
       highlightsindex2: 2,
     }
   },
-
-  methods: {
-    shiftHighlights: function () {
-      this.highlightsindex1 = this.highlightsindex1 + 1
-      return this.highlightsindex1
-    },
-  },
 }
+
+
 </script>
 
 <style lang="scss" scoped>
 #right-highlight {
   float: right;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+#center-highlight {
+  text-transform: uppercase;
+  font-weight: bold;
 }
 
 #left-highlight {
   float: left;
+  text-transform: uppercase;
+  font-weight: bold;
 }
 
 .highlightsbar {
