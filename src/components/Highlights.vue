@@ -1,14 +1,8 @@
 <template>
-  <div class="highlightsbar">
-    <span id="center-highlight">
-      {{ industryindices[highlightsindex1] }}
-      {{ industrybetas[highlightsindex1] }}
-    </span>
-    <span id="left-highlight"> JSE Allshare Index: {{ jseindex }}</span>
-    <span id="right-highlight">
-      {{ industryindices[highlightsindex2] }}
-      {{ industrybetas[highlightsindex2] }}
-    </span>
+  <div class="highlights-bar">
+    <div class="betas">JSE Index:{{ jseIndex }}</div>
+    <div class="betas">{{ industryIndices[1] }}: {{ industryBetas[1] }}</div>
+    <div class="betas">{{ industryIndices[2] }}: {{ industryBetas[2] }}</div>
   </div>
 </template>
 
@@ -17,42 +11,28 @@ export default {
   name: 'Highlights',
   data() {
     return {
-      industrybetas: ['0.7276 (5%)', '0.9 (-7%)', '1.1 (25%)', '0.68 (-30%)'],
-      industryindices: [
-        'Oil and Gas Index: ',
-        'Basic Materials Index: ',
-        'Industrials Index: ',
-        'Consumer Goods Index: ',
+      industryBetas: ['0.7276 (5%)', '0.9 (-7%)', '1.1 (25%)', '0.68 (-30%)'],
+      industryIndices: [
+        'Oil and Gas',
+        'Chemicals',
+        'Mining',
+        'Forestry and Paper',
       ],
-      jseindex: '0.74 (+5%)',
-      highlightsindex1: 1,
-      highlightsindex2: 2,
+      jseIndex: '+15%',
     }
   },
 }
 </script>
 
 <style lang="scss" scoped>
-#right-highlight {
-  float: right;
-  text-transform: uppercase;
-  font-weight: bold;
-}
-
-#center-highlight {
-  text-transform: uppercase;
-  font-weight: bold;
-}
-
-#left-highlight {
-  float: left;
-  text-transform: uppercase;
-  font-weight: bold;
-}
-
-.highlightsbar {
+.highlights-bar {
+  display: flex;
   background-color: lightblue;
-  height: 25px;
-  width: 100%;
+}
+
+.betas {
+  flex: 1 1 auto;
+  text-transform: uppercase;
+  font-weight: bold;
 }
 </style>
