@@ -4,6 +4,7 @@
   <LineGraph />
   <Faq />
   <WorkedExample />
+  <Footer/>
 </template>
 
 <script>
@@ -12,6 +13,7 @@ import Heading from './components/Heading.vue'
 import Faq from './components/Faq.vue'
 import Introduction from './components/Introduction.vue'
 import WorkedExample from './components/WorkedExample.vue'
+import Footer from './components/Footer.vue'
 
 export default {
   name: 'App',
@@ -21,6 +23,7 @@ export default {
     LineGraph,
     Faq,
     WorkedExample,
+    Footer,
   },
 }
 </script>
