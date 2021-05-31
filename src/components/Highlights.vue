@@ -27,7 +27,6 @@ export default {
 <style lang="scss" scoped>
 .highlights-bar {
   display: flex;
-  background-color: lightblue;
 }
 
 .betas {
