@@ -1,4 +1,5 @@
 <template>
+  <Highlights />
   <Heading />
   <Introduction />
   <LineGraph />
@@ -14,10 +15,12 @@ import Faq from './components/Faq.vue'
 import Introduction from './components/Introduction.vue'
 import WorkedExample from './components/WorkedExample.vue'
 import Footer from './components/Footer.vue'
+import Highlights from './components/Highlights.vue'
 
 export default {
   name: 'App',
   components: {
+    Highlights,
     Heading,
     Introduction,
     LineGraph,
