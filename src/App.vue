@@ -4,7 +4,7 @@
   <LineGraph />
   <Faq />
   <WorkedExample />
-  <Footer/>
+  <Footer />
 </template>
 
 <script>
