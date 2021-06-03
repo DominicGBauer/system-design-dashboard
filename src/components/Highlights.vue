@@ -1,12 +1,18 @@
 <template>
   <div class="highlights-bar">
-    <div class="betas">JSE Index:{{ jseIndex }}</div>
+    <div class="betas">JSE Index:{{ jse1 }}</div>
     <div class="betas">{{ industryIndices[1] }}: {{ industryBetas[1] }}</div>
     <div class="betas">{{ industryIndices[2] }}: {{ industryBetas[2] }}</div>
   </div>
+  <div>{{ info }}</div>
 </template>
 
 <script>
+//Axios stuff
+import axios from 'axios'
+
+var jse11 = 5
+
 export default {
   name: 'Highlights',
   data() {
@@ -19,7 +25,12 @@ export default {
         'Forestry and Paper',
       ],
       jseIndex: '+15%',
+
+      jse1: jse11,
     }
+  },
+  mounted() {
+    axios.get('/api').then((response) => (this.info = response.data))
   },
 }
 </script>
