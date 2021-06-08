@@ -6,48 +6,50 @@
       only the four companies listed in the table below that are held in the
       given investment proportions."
     />
-    <table>
-      <tr>
-        <th>Share</th>
-        <th>Sector</th>
-        <th>Proportion</th>
-        <th>R&sup2;</th>
-        <th>Beta</th>
-        <th>Std Dev</th>
-      </tr>
-      <tr>
-        <td>AGL</td>
-        <td>Mining</td>
-        <td>40%</td>
-        <td>70.43%</td>
-        <td>1.72</td>
-        <td>38.02%</td>
-      </tr>
-      <tr>
-        <td>WHL</td>
-        <td>General Retailers</td>
-        <td>10%</td>
-        <td>20.84%</td>
-        <td>0.67</td>
-        <td>27.06%</td>
-      </tr>
-      <tr>
-        <td>APN</td>
-        <td>Pharmaceuticals</td>
-        <td>20%</td>
-        <td>7.07%</td>
-        <td>0.44</td>
-        <td>30.23%</td>
-      </tr>
-      <tr>
-        <td>LBT</td>
-        <td>Life Insurance</td>
-        <td>30%</td>
-        <td>7.75%</td>
-        <td>0.29</td>
-        <td>19.19%</td>
-      </tr>
-    </table>
+    <div class="table-container">
+      <table>
+        <tr>
+          <th>Share</th>
+          <th>Sector</th>
+          <th>Proportion</th>
+          <th>R&sup2;</th>
+          <th>Beta</th>
+          <th>Std Dev</th>
+        </tr>
+        <tr>
+          <td>AGL</td>
+          <td>Mining</td>
+          <td>40%</td>
+          <td>70.43%</td>
+          <td>1.72</td>
+          <td>38.02%</td>
+        </tr>
+        <tr>
+          <td>WHL</td>
+          <td>General Retailers</td>
+          <td>10%</td>
+          <td>20.84%</td>
+          <td>0.67</td>
+          <td>27.06%</td>
+        </tr>
+        <tr>
+          <td>APN</td>
+          <td>Pharmaceuticals</td>
+          <td>20%</td>
+          <td>7.07%</td>
+          <td>0.44</td>
+          <td>30.23%</td>
+        </tr>
+        <tr>
+          <td>LBT</td>
+          <td>Life Insurance</td>
+          <td>30%</td>
+          <td>7.75%</td>
+          <td>0.29</td>
+          <td>19.19%</td>
+        </tr>
+      </table>
+    </div>
     <paragraph
       text="In order to conduct a risk analysis for this portfolio, one needs to
       calculate the portfolio’s beta, systematic risk, specific risk and total
@@ -59,10 +61,10 @@
       text="Recall that the beta of a portfolio is simply the weighted average of the
       component betas and can be calculated as follows:"
     />
-    <paragraph
-      text="Portfolio Beta = (0.4 × 1.72) + (0.1 × 0.67) + (0.2 × 0.44) + (0.3 × 0.29)
-      = 0.931 ."
-    />
+    <p class="equation">
+      Portfolio Beta = (0.4 × 1.72) + (0.1 × 0.67) + (0.2 × 0.44) + (0.3 × 0.29)
+    </p>
+    <p class="equation">= 0.931</p>
     <paragraph
       text="Hence, on average, this portfolio is expected to move 9.31% for every 10%
       move in the market index. It is also possible to compute the magnitude of
@@ -70,10 +72,10 @@
       the market index (FTSE/JSE All Share Index [J203]) is required - assume
       that the annualised standard deviation is 18.44% per annum."
     />
-    <paragraph
-      text="Systematic Risk = Portfolio Beta × Std. Dev. of J203 = 0.931 × 18.44% =
-      17.17% ."
-    />
+
+    <p class="equation">Systematic Risk = Portfolio Beta × Std. Dev. of J203</p>
+    <p class="equation">= 0.931 × 18.44%</p>
+    <p class="equation">= 17.17%</p>
 
     <h2>Calculate Portfolio Specific Risk</h2>
     <paragraph
@@ -82,9 +84,9 @@
       begin by calculating the specific risk of the constituent shares in the
       portfolio, which is governed by the following equation:"
     />
-    <paragraph
-      text="(Total Risk)&sup2; = (Systematic Risk)&sup2; + (Specific Risk)&sup2;"
-    />
+    <p class="equation">
+      (Total Risk)&sup2; = (Systematic Risk)&sup2; + (Specific Risk)&sup2;
+    </p>
     <paragraph
       text="It is important to realise that one can add the square of the standard
       deviations (i.e. the variances) but cannot add the standard deviations and
@@ -95,18 +97,25 @@
       and 1 − R&sup2; is the proportion of specific risk relative to total risk, one
       can express the above relationship as:"
     />
-    <paragraph
-      text="(Total Risk)&sup2; = R&sup2; × (Total Risk)&sup2; + (1 − R&sup2; ) × (Total Risk)&sup2;"
-    />
+    <p class="equation">
+      (Total Risk)&sup2; = R&sup2; × (Total Risk)&sup2; + (1 − R&sup2; ) ×
+      (Total Risk)&sup2;
+    </p>
+
     <paragraph
       text="It is easy to see that the components of risk can be obtained by
       comparison of the above expressions:"
     />
-    <paragraph
-      text="(Specific Risk)&sup2; = (1 − R&sup2; ) × (Total Risk)&sup2;"
-    />
+    <p class="equation">
+      (Specific Risk)&sup2; = (1 − R&sup2; ) × (Total Risk)&sup2;
+    </p>
+
     <paragraph text="Similarly:" />
-    <paragraph text="(Systematic Risk)&sup2; = R&sup2; × (Total Risk)&sup2;" />
+
+    <p class="equation">
+      (Systematic Risk)&sup2; = R&sup2; × (Total Risk)&sup2;
+    </p>
+
     <paragraph
       text="Note that information concerning the R&sup2; and the total risk of the
       portfolio as a whole is not available, so it is not possible to directly
@@ -120,53 +129,54 @@
       magnitude of the two components of risk for individual shares using the
       above expressions as follows:"
     />
+    <div class="table-container">
+      <table>
+        <tr>
+          <th>Share</th>
+          <th>AGL</th>
+          <th>WHL</th>
+          <th>APN</th>
+          <th>LBT</th>
+        </tr>
+        <tr>
+          <td>R&sup2;</td>
+          <td>70.43%</td>
+          <td>20.84%</td>
+          <td>7.07%</td>
+          <td>7.75%</td>
+        </tr>
+        <tr>
+          <td>1- R&sup2;</td>
 
-    <table>
-      <tr>
-        <th>Share</th>
-        <th>AGL</th>
-        <th>WHL</th>
-        <th>APN</th>
-        <th>LBT</th>
-      </tr>
-      <tr>
-        <td>R&sup2;</td>
-        <td>70.43%</td>
-        <td>20.84%</td>
-        <td>7.07%</td>
-        <td>7.75%</td>
-      </tr>
-      <tr>
-        <td>1- R&sup2;</td>
+          <td>29.57%</td>
+          <td>79.16%</td>
+          <td>92.93%</td>
+          <td>92.25%</td>
+        </tr>
+        <tr>
+          <td>Total Risk</td>
 
-        <td>29.57%</td>
-        <td>79.16%</td>
-        <td>92.93%</td>
-        <td>92.25%</td>
-      </tr>
-      <tr>
-        <td>Total Risk</td>
-
-        <td>38.02%</td>
-        <td>27.06%</td>
-        <td>30.23%</td>
-        <td>19.19%</td>
-      </tr>
-      <tr>
-        <td>Systematic Risk</td>
-        <td>31.91%</td>
-        <td>12.35%</td>
-        <td>8.04%</td>
-        <td>5.34%</td>
-      </tr>
-      <tr>
-        <td>Specific Risk</td>
-        <td>20.67%</td>
-        <td>24.07%</td>
-        <td>29.15%</td>
-        <td>18.43%</td>
-      </tr>
-    </table>
+          <td>38.02%</td>
+          <td>27.06%</td>
+          <td>30.23%</td>
+          <td>19.19%</td>
+        </tr>
+        <tr>
+          <td>Systematic Risk</td>
+          <td>31.91%</td>
+          <td>12.35%</td>
+          <td>8.04%</td>
+          <td>5.34%</td>
+        </tr>
+        <tr>
+          <td>Specific Risk</td>
+          <td>20.67%</td>
+          <td>24.07%</td>
+          <td>29.15%</td>
+          <td>18.43%</td>
+        </tr>
+      </table>
+    </div>
 
     <paragraph
       text="The calculation of the specific risk of the portfolio is shown below. Here
@@ -174,15 +184,15 @@
       then summed across the constituent shares. Finally, the square root of the
       result yields the portfolio’s specific risk"
     />
-    <p>
+    <p class="equation">
       Portfolio Specific Risk =
       <span style="vertical-align: 16%">&radic;</span>
       <span style="text-decoration: overline">
         (0.4 × 20.67%)&sup2; + (0.1 × 24.07%)&sup2; + (0.2 × 29.15%)&sup2; +
         (0.3 × 18.43%)&sup2;
       </span>
-      = 11.78%
     </p>
+    <p class="equation">= 11.78%</p>
     <paragraph
       text="Notice how effective the portfolio of shares has been in reducing specific
       risk. By diversifying amongst the above shares, the specific risk of the
@@ -195,31 +205,37 @@
     <h2>Calculate Portfolio Total Risk</h2>
 
     <paragraph text="Recall that:" />
-    <paragraph
-      text="(Total Risk)&sup2; = (Systematic Risk)&sup2; + (Specific Risk)&sup2;"
-    />
+
+    <p class="equation">
+      (Total Risk)&sup2; = (Systematic Risk)&sup2; + (Specific Risk)&sup2;
+    </p>
+
     <paragraph
       text="This relationship is true both for individual shares as well as
-      portfolios, hence"
+      portfolios, hence:"
     />
-    <p>
+    <p class="equation">
       Portfolio’s Total Risk =
       <span style="vertical-align: 16%">&radic;</span>
       <span style="text-decoration: overline">
         (17.17)&sup2; + (11.78)&sup2;
       </span>
-      = 20.82%
     </p>
+    <p class="equation">= 20.82%</p>
 
     <paragraph
       text="We are now able to compute the portfolio’s proportion of systematic risk
       and its proportion of specific risk. Statistically, the portfolio has:"
     />
-    <paragraph
-      text="R&sup2; = (17.17)&sup2; (Portfolio’s Total Risk)&sup2; = 68%"
-    />
+
+    <p class="equation">
+      R&sup2; = (17.17)&sup2; (Portfolio’s Total Risk)&sup2;
+    </p>
+    <p class="equation">= 68%</p>
+
     <paragraph text="and therefore" />
-    <paragraph text="(1 − R&sup2; ) = 32%" />
+    <p class="equation">(1 − R&sup2; ) = 32%</p>
+
     <paragraph
       text="That is, the movements of the market index
       can explain 68% of the portfolio’s movements while only 32% of the
@@ -243,10 +259,12 @@
       interest rate. Now suppose that the market index shows an annual return of
       25% and the interest rate is 18%. Then, over the same period:"
     />
-    <paragraph
-      text="Benchmark Return = Beta × Market Index Return + (1 − Beta) × Interest Rate
-      = (0.93 × 25%) + (0.07 × 18%) = 24.51% ."
-    />
+    <p class="equation">
+      Benchmark Return = Beta × Market Index Return + (1 − Beta) × Interest Rate
+    </p>
+    <p class="equation">= (0.93 × 25%) + (0.07 × 18%)</p>
+    <p class="equation">= 24.51%</p>
+
     <paragraph
       text="To calculate the actual return on the portfolio, simply sum the returns
       over a particular period of the constituent securities, weighted by their
@@ -255,9 +273,11 @@
       must clearly match one another. Assume the calculation of actual portfolio
       return yielded 30% per annum. Then:"
     />
-    <paragraph
-      text="Abnormal Return = Actual Return − Benchmark Return = 30% − 24.51% = 5.49%"
-    />
+
+    <p class="equation">Abnormal Return = Actual Return − Benchmark Return</p>
+    <p class="equation">= 30% − 24.51%</p>
+    <p class="equation">= 5.49%</p>
+
     <paragraph
       text="One can calculate the abnormal return for an individual security in
       precisely the same way, again using the notion of benchmark portfolio
@@ -286,10 +306,11 @@
       suggests an expected return on the market of 9% + 8% or 17% per annum.
       Hence, the expected return on the portfolio is:"
     />
-    <paragraph
-      text="Expected Return = Beta × Market Index Return + (1 − Beta) × Interest Rate
-      = (0.93 × 17%) + (0.07 × 18%) = 16.37%"
-    />
+    <p class="equation">
+      Expected Return = Beta × Market Index Return + (1 − Beta) × Interest Rate
+    </p>
+    <p class="equation">= (0.93 × 17%) + (0.07 × 18%)</p>
+    <p class="equation">= 16.37%</p>
 
     <h2>Interpreting Portfolio Risk</h2>
     <paragraph
@@ -342,21 +363,38 @@ export default {
 h1 {
   margin: 40px 0;
 }
+
 h2 {
   text-align: left;
 }
+
 p {
   text-align: left;
 }
+
+.equation {
+  display: flex;
+  justify-content: center;
+  margin: 1.5rem;
+}
+
+.table-container {
+  display: flex;
+  justify-content: center;
+  margin: 3rem;
+}
+
 table {
   border-collapse: collapse;
 }
+
 table,
 tr,
 td,
 th {
   border: 1px solid black;
 }
+
 td,
 th {
   padding: 6px;
