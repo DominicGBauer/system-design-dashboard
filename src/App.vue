@@ -1,9 +1,11 @@
 <template>
+  <Highlights />
   <Heading />
   <Introduction />
   <LineGraph />
   <Faq />
   <WorkedExample />
+  <Footer />
 </template>
 
 <script>
@@ -12,15 +14,19 @@ import Heading from './components/Heading.vue'
 import Faq from './components/Faq.vue'
 import Introduction from './components/Introduction.vue'
 import WorkedExample from './components/WorkedExample.vue'
+import Footer from './components/Footer.vue'
+import Highlights from './components/Highlights.vue'
 
 export default {
   name: 'App',
   components: {
+    Highlights,
     Heading,
     Introduction,
     LineGraph,
     Faq,
     WorkedExample,
+    Footer,
   },
 }
 </script>
