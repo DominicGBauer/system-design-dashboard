@@ -361,11 +361,12 @@ export default {
 
 <style lang="scss" scoped>
 h1 {
-  margin: 40px 0;
+  margin: 6rem 0 3rem 0;
 }
 
 h2 {
   text-align: left;
+  margin: 2rem 0;
 }
 
 p {
