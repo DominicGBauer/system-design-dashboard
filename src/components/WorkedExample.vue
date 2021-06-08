@@ -179,8 +179,9 @@
       <span style="vertical-align: 16%">&radic;</span>
       <span style="text-decoration: overline">
         (0.4 × 20.67%)&sup2; + (0.1 × 24.07%)&sup2; + (0.2 × 29.15%)&sup2; +
-        (0.3 × 18.43%)&sup2; = 11.78%
+        (0.3 × 18.43%)&sup2;
       </span>
+      = 11.78%
     </p>
     <paragraph
       text="Notice how effective the portfolio of shares has been in reducing specific
@@ -205,8 +206,9 @@
       Portfolio’s Total Risk =
       <span style="vertical-align: 16%">&radic;</span>
       <span style="text-decoration: overline">
-        (17.17)&sup2; + (11.78)&sup2; = 20.82%
+        (17.17)&sup2; + (11.78)&sup2;
       </span>
+      = 20.82%
     </p>
 
     <paragraph
