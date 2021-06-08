@@ -83,7 +83,7 @@
       portfolio, which is governed by the following equation:"
     />
     <paragraph
-      text="(Total Risk) 2 = (Systematic Risk) 2 + (Specific Risk) 2"
+      text="(Total Risk)&sup2; = (Systematic Risk)&sup2; + (Specific Risk)&sup2;"
     />
     <paragraph
       text="It is important to realise that one can add the square of the standard
@@ -91,22 +91,24 @@
       still obtain a meaningful interpretation."
     />
     <paragraph
-      text="Now since R2 is the proportion of systematic risk relative to total risk
-      and 1 − R2 is the proportion of specific risk relative to total risk, one
+      text="Now since R&sup2; is the proportion of systematic risk relative to total risk
+      and 1 − R&sup2; is the proportion of specific risk relative to total risk, one
       can express the above relationship as:"
     />
     <paragraph
-      text="(Total Risk) 2 = R 2 × (Total Risk) 2 + (1 − R 2 ) × (Total Risk) 2"
+      text="(Total Risk)&sup2; = R&sup2; × (Total Risk)&sup2; + (1 − R&sup2; ) × (Total Risk)&sup2;"
     />
     <paragraph
       text="It is easy to see that the components of risk can be obtained by
       comparison of the above expressions:"
     />
-    <paragraph text="(Specific Risk) 2 = (1 − R 2 ) × (Total Risk) 2" />
-    <paragraph text="Similarly:" />
-    <paragraph text="(Systematic Risk) 2 = R 2 × (Total Risk) 2" />
     <paragraph
-      text="Note that information concerning the R2 and the total risk of the
+      text="(Specific Risk)&sup2; = (1 − R&sup2; ) × (Total Risk)&sup2;"
+    />
+    <paragraph text="Similarly:" />
+    <paragraph text="(Systematic Risk)&sup2; = R&sup2; × (Total Risk)&sup2;" />
+    <paragraph
+      text="Note that information concerning the R&sup2; and the total risk of the
       portfolio as a whole is not available, so it is not possible to directly
       compute these risk components for the portfolio using the above
       expressions. It is possible, however, to compute these two risk components
@@ -172,10 +174,14 @@
       then summed across the constituent shares. Finally, the square root of the
       result yields the portfolio’s specific risk"
     />
-    <paragraph
-      text="Portfolio Specific Risk = √ (0.4 × 20.67%) 2 + (0.1 × 24.07%) 2 + (0.2 ×
-      29.15%) 2 + (0.3 × 18.43%) 2 = 11.78%"
-    />
+    <p>
+      Portfolio Specific Risk =
+      <span style="vertical-align: 16%">&radic;</span>
+      <span style="text-decoration: overline">
+        (0.4 × 20.67%)&sup2; + (0.1 × 24.07%)&sup2; + (0.2 × 29.15%)&sup2; +
+        (0.3 × 18.43%)&sup2; = 11.78%
+      </span>
+    </p>
     <paragraph
       text="Notice how effective the portfolio of shares has been in reducing specific
       risk. By diversifying amongst the above shares, the specific risk of the
@@ -189,20 +195,29 @@
 
     <paragraph text="Recall that:" />
     <paragraph
-      text="(Total Risk) 2 = (Systematic Risk) 2 + (Specific Risk) 2"
+      text="(Total Risk)&sup2; = (Systematic Risk)&sup2; + (Specific Risk)&sup2;"
     />
     <paragraph
-      text="      This relationship is true both for individual shares as well as
+      text="This relationship is true both for individual shares as well as
       portfolios, hence"
     />
-    <paragraph text="Portfolio’s Total Risk = √ (17.17)2 + (11.78)2 = 20.82%" />
+    <p>
+      Portfolio’s Total Risk =
+      <span style="vertical-align: 16%">&radic;</span>
+      <span style="text-decoration: overline">
+        (17.17)&sup2; + (11.78)&sup2; = 20.82%
+      </span>
+    </p>
+
     <paragraph
-      text="PWe are now able to compute the portfolio’s proportion of systematic risk
+      text="We are now able to compute the portfolio’s proportion of systematic risk
       and its proportion of specific risk. Statistically, the portfolio has:"
     />
-    <paragraph text="R 2 = (17.17)2 (Portfolio’s Total Risk) 2 = 68%" />
+    <paragraph
+      text="R&sup2; = (17.17)&sup2; (Portfolio’s Total Risk)&sup2; = 68%"
+    />
     <paragraph text="and therefore" />
-    <paragraph text="(1 − R2 ) = 32%" />
+    <paragraph text="(1 − R&sup2; ) = 32%" />
     <paragraph
       text="That is, the movements of the market index
       can explain 68% of the portfolio’s movements while only 32% of the
@@ -326,6 +341,9 @@ h1 {
   margin: 40px 0;
 }
 h2 {
+  text-align: left;
+}
+p {
   text-align: left;
 }
 table {

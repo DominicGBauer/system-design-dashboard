@@ -84,28 +84,30 @@
       movements."
     />
 
-    <h2>What exactly are R**2 and 1 − R**2</h2>
+    <h2>What exactly are R&sup2; and 1 − R&sup2;</h2>
 
     <paragraph
-      text="Technically, the R2 indicates how well the “best fitting” regression line
+      text="Technically, the R&sup2; indicates how well the “best fitting” regression line
       “fits” the data points. Interpreting this in a more useful way, it tells
       one what proportion of the share’s movement is due to market movements,
       i.e. the proportion of market risk relative to total risk. Clearly then, 1
-      − R2 tells one what proportion of the share’s movement is due to unique
-      factors, i.e. 1 − R2 measures the proportion of unique risk relative to
+      − R&sup2; tells one what proportion of the share’s movement is due to unique
+      factors, i.e. 1 − R&sup2; measures the proportion of unique risk relative to
       total risk."
     />
 
     <h2>Annual to monthly standard deviation/volatility?</h2>
 
-    <paragraph
-      text="The standard deviations (or volatilities) provided in the tables in the
+    <p>
+      The standard deviations (or volatilities) provided in the tables in the
       accompanying Excel workbook are calculated on a monthly basis, and then
       annualised. Hence, a standard deviation of 48.5% should be interpreted as
       48.5% per annum. To convert this into monthly terms, simply divide the
-      published figure by the square root of 12, i.e. (48.5%)/√ 12 = 14% per
-      month."
-    />
+      published figure by the square root of 12, i.e. (48.5%) /
+      <span style="vertical-align: 16%">&radic;</span>
+      <span style="text-decoration: overline"> 12 </span>
+      = 14% per
+    </p>
   </div>
 </template>
 
