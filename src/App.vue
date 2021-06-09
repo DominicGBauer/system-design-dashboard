@@ -1,15 +1,17 @@
 <template>
-  <Highlights />
-  <Heading />
-  <Introduction />
-  <LineGraph />
-  <Faq />
-  <WorkedExample />
+  <div class="container">
+    <Highlights />
+    <Heading />
+    <Introduction />
+    <PieChart />
+    <Faq />
+    <WorkedExample />
+  </div>
   <Footer />
 </template>
 
 <script>
-import LineGraph from './components/LineGraph.vue'
+import PieChart from './components/PieChart.vue'
 import Heading from './components/Heading.vue'
 import Faq from './components/Faq.vue'
 import Introduction from './components/Introduction.vue'
@@ -23,7 +25,7 @@ export default {
     Highlights,
     Heading,
     Introduction,
-    LineGraph,
+    PieChart,
     Faq,
     WorkedExample,
     Footer,
@@ -38,7 +40,12 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin: 2rem 10%;
   max-width: 100%;
+}
+.container {
+  margin: 2rem 10%;
+}
+body {
+  margin: 0;
 }
 </style>
