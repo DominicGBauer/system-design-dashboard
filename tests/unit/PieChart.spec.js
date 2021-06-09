@@ -1,9 +1,9 @@
 import { shallowMount } from '@vue/test-utils'
-import LineGraph from '@/components/LineGraph.vue'
+import PieChart from '@/components/PieChart.vue'
 
-describe('LineGraph.vue', () => {
-  it('renders the LineGraph', () => {
-    const wrapper = shallowMount(LineGraph, {})
+describe('PieChart.vue', () => {
+  it('renders the PieChart', () => {
+    const wrapper = shallowMount(PieChart, {})
     expect(wrapper.find('.pie-chart').classes()).toContain('pie-chart')
   })
 })
