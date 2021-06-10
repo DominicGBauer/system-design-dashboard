@@ -1,36 +1,30 @@
 <template>
   <div class="highlights-bar">
-    <div class="betas">JSE Index:{{ jse1 }}</div>
-    <div class="betas">{{ industryIndices[1] }}: {{ industryBetas[1] }}</div>
-    <div class="betas">{{ industryIndices[2] }}: {{ industryBetas[2] }}</div>
+
+    <div class="betas">JSE All Share Index: <span id="allShareNumber" > {{ index1a }} ({{index1a/index1b }}) </span> </div>
   </div>
-  <div>{{ info }}</div>
+
 </template>
 
 <script>
 //Axios stuff
 import axios from 'axios'
 
-var jse11 = 5
 
 export default {
   name: 'Highlights',
   data() {
     return {
-      industryBetas: ['0.7276 (5%)', '0.9 (-7%)', '1.1 (25%)', '0.68 (-30%)'],
-      industryIndices: [
-        'Oil and Gas',
-        'Chemicals',
-        'Mining',
-        'Forestry and Paper',
-      ],
-      jseIndex: '+15%',
 
-      jse1: jse11,
+      index1a: [1,2,3],
+      index1b: [1,2,3],
     }
   },
   mounted() {
-    axios.get('/api').then((response) => (this.info = response.data))
+    axios.get('/api/shares?share=J212').then((response) => (this.index1a = response.data[1].value.toFixed(0)))
+    axios.get('/api/shares?share=J212').then((response) => (this.index1b = response.data[7].value.toFixed(0)))
+
+
   },
 }
 </script>
