@@ -8,4 +8,9 @@ describe('Footer.vue', () => {
       'AFRICAN INSTITUTE OF FINANCIAL MARKETS AND RISK MANAGEMENT',
     )
   })
+
+  it('renders the Footer and it looks the same', () => {
+    const wrapper = shallowMount(Footer, {})
+    expect(wrapper.element).toMatchSnapshot()
+  })
 })
