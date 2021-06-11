@@ -1,67 +1,63 @@
 <template>
   <div class="highlights-bar">
     <div class="indices">
-      All Share Index (30 Days): {{ index1.value }}
+      All Share Index (QTR): {{ allShare.value }}
       <span
         :class="{
-          positive: index1.change >= 0,
-          negative: !(index1.change >= 0),
+          positive: allShare.change >= 0,
+          negative: !(allShare.change >= 0),
         }"
-        v-on:mount="index1.isPositive = index1.change <= 0"
       >
-        ({{ index1.change }}%)
+        ({{ allShare.change }}%)
       </span>
     </div>
 
     <div class="indices">
-      TOP 40 Index (30 Days): {{ index2 }}
+      Top 40 Index (QTR): {{ top40.value }}
       <span
-        v-bind:class="{
-          positive: index2Change >= 0,
-          negative: !(index2Change >= 0),
+        :class="{
+          positive: top40.change >= 0,
+          negative: !(top40.change >= 0),
         }"
-        v-on:mount="index1Sign = index2Change <= 0"
       >
-        ({{ index2Change }}%)
+        ({{ top40.change }}%)
       </span>
     </div>
 
     <div class="indices">
-      F&I Index (30 Days): {{ index3 }}
+      F&I Index (QTR): {{ fAndI.value }}
       <span
-        v-bind:class="{
-          positive: index3Change >= 0,
-          negative: !(index3Change >= 0),
+        :class="{
+          positive: fAndI.change >= 0,
+          negative: !(fAndI.change >= 0),
         }"
-        v-on:mount="index3Sign = index3Change <= 0"
       >
-        ({{ index3Change }}%)
+        ({{ fAndI.change }}%)
       </span>
     </div>
 
     <div class="indices">
-      Industrials Index (30 Days): {{ index4 }}
+      Industrials Index (QTR): {{ industrials.value }}
       <span
-        v-bind:class="{
-          positive: index4Change >= 0,
-          negative: !(index4Change >= 0),
+        :class="{
+          positive: industrials.change >= 0,
+          negative: !(industrials.change >= 0),
         }"
-        v-on:mount="index4Sign = index4Change <= 0"
       >
-        ({{ index4Change }}%)
+        ({{ industrials.change }}%)
       </span>
     </div>
 
     <div class="indices">
-      Resources Index (30 Days): {{ index5 }}
+      Resources Index (QTR): {{ resources.value }}
       <span
-        v-bind:class="{
-          positive: index5Change >= 0,
-          negative: !(index5Change >= 0),
+        :class="{
+          positive: resources.change >= 0,
+          negative: !(resources.change >= 0),
         }"
-        v-on:mount="index5Sign = index5Change <= 0"
+        v-on:mount="resources.isNegative = resources.change <= 0"
       >
-        ({{ index5Change }}%)
+        ({{ resources.change }}%)
       </span>
     </div>
   </div>
@@ -75,99 +71,104 @@ export default {
   name: 'Highlights',
   data() {
     return {
-      period: 22,
+      period: 66,
 
-      index1: {
+      allShare: {
         value: 0,
         change: 0,
-        isPositive: false,
+        isNegative: false,
       },
 
-      index2: [],
-      index2Change: [],
-      index2Sign: false,
+      top40: {
+        value: 0,
+        change: 0,
+        isNegative: false,
+      },
 
-      index3: [],
-      index3Change: [],
-      index3Sign: false,
+      fAndI: {
+        value: 0,
+        change: 0,
+        isNegative: false,
+      },
 
-      index4: [],
-      index4Change: [],
-      index4Sign: false,
+      industrials: {
+        value: 0,
+        change: 0,
+        isNegative: false,
+      },
 
-      index5: [],
-      index5Change: [],
-      index5Sign: false,
+      resources: {
+        value: 0,
+        change: 0,
+        isNegative: false,
+      },
     }
   },
   mounted() {
-    //Getting the info for JSE All Share Index
     axios.get('/api/shares?share=J203').then(
       (response) =>
-        (this.index1 = {
-          value: response.data[1].value.toFixed(0),
+        (this.allShare = {
+          value: response.data[response.data.length - 1].value.toFixed(0),
           change: (
-            (response.data[1].value / response.data[this.period].value - 1) *
+            (response.data[response.data.length - 1].value /
+              response.data[response.data.length - this.period].value -
+              1) *
             100
           ).toFixed(0),
         }),
     )
 
-    //Getting the info for JSE Top 40 Index
-    axios
-      .get('/api/shares?share=J200')
-      .then((response) => (this.index2 = response.data[1].value.toFixed(0)))
-    axios
-      .get('/api/shares?share=J200')
-      .then(
-        (response) =>
-          (this.index2Change = (
-            (response.data[1].value / response.data[this.period].value - 1) *
+    axios.get('/api/shares?share=J200').then(
+      (response) =>
+        (this.top40 = {
+          value: response.data[response.data.length - 1].value.toFixed(0),
+          change: (
+            (response.data[response.data.length - 1].value /
+              response.data[response.data.length - this.period].value -
+              1) *
             100
-          ).toFixed(0)),
-      )
+          ).toFixed(0),
+        }),
+    )
 
-    //Getting the info for Financials and Industrials Index
-    axios
-      .get('/api/shares?share=J250')
-      .then((response) => (this.index3 = response.data[1].value.toFixed(0)))
-    axios
-      .get('/api/shares?share=J250')
-      .then(
-        (response) =>
-          (this.index3Change = (
-            (response.data[1].value / response.data[this.period].value - 1) *
+    axios.get('/api/shares?share=J250').then(
+      (response) =>
+        (this.fAndI = {
+          value: response.data[response.data.length - 1].value.toFixed(0),
+          change: (
+            (response.data[response.data.length - 1].value /
+              response.data[response.data.length - this.period].value -
+              1) *
             100
-          ).toFixed(0)),
-      )
+          ).toFixed(0),
+        }),
+    )
 
-    //Getting the info for Industrials Index
-    axios
-      .get('/api/shares?share=J257')
-      .then((response) => (this.index4 = response.data[1].value.toFixed(0)))
-    axios
-      .get('/api/shares?share=J257')
-      .then(
-        (response) =>
-          (this.index4Change = (
-            (response.data[1].value / response.data[this.period].value - 1) *
+    axios.get('/api/shares?share=J257').then(
+      (response) =>
+        (this.industrials = {
+          value: response.data[response.data.length - 1].value.toFixed(0),
+          change: (
+            (response.data[response.data.length - 1].value /
+              response.data[response.data.length - this.period].value -
+              1) *
             100
-          ).toFixed(0)),
-      )
+          ).toFixed(0),
+        }),
+    )
 
-    //Getting the info for Resources Index
-    axios
-      .get('/api/shares?share=J258')
-      .then((response) => (this.index5 = response.data[1].value.toFixed(0)))
-    axios
-      .get('/api/shares?share=J258')
-      .then(
-        (response) =>
-          (this.index5Change = (
-            (response.data[1].value / response.data[this.period].value - 1) *
+    axios.get('/api/shares?share=J258').then(
+      (response) =>
+        (this.resources = {
+          value: response.data[response.data.length - 1].value.toFixed(0),
+          change: (
+            (response.data[response.data.length - 1].value /
+              response.data[response.data.length - this.period].value -
+              1) *
             100
-          ).toFixed(0)),
-      )
+          ).toFixed(0),
+        }),
+    )
   },
 }
 </script>
@@ -181,7 +182,7 @@ export default {
   flex: 1 1 auto;
   text-transform: uppercase;
   font-weight: bold;
-  font-size: 14px;
+  font-size: 13px;
 }
 
 .positive {
