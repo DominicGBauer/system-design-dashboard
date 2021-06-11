@@ -1,23 +1,21 @@
 <template>
   <div class="highlights-bar">
-    <div class="betas">
-      All Share Index (30 Days): {{ index1 }}
+    <div class="indices">
+      All Share Index (30 Days): {{ index1.value }}
       <span
-        id="allShareNumber"
-        v-bind:class="{
-          positive: index1Change >= 0,
-          negative: !(index1Change >= 0),
+        :class="{
+          positive: index1.change >= 0,
+          negative: !(index1.change >= 0),
         }"
-        v-on:mount="index1Sign = index1Change <= 0"
+        v-on:mount="index1.isPositive = index1.change <= 0"
       >
-        ({{ index1Change }}%)
+        ({{ index1.change }}%)
       </span>
     </div>
 
-    <div class="betas">
+    <div class="indices">
       TOP 40 Index (30 Days): {{ index2 }}
       <span
-        id="allShareNumber"
         v-bind:class="{
           positive: index2Change >= 0,
           negative: !(index2Change >= 0),
@@ -28,10 +26,9 @@
       </span>
     </div>
 
-    <div class="betas">
+    <div class="indices">
       F&I Index (30 Days): {{ index3 }}
       <span
-        id="allShareNumber"
         v-bind:class="{
           positive: index3Change >= 0,
           negative: !(index3Change >= 0),
@@ -42,10 +39,9 @@
       </span>
     </div>
 
-    <div class="betas">
+    <div class="indices">
       Industrials Index (30 Days): {{ index4 }}
       <span
-        id="allShareNumber"
         v-bind:class="{
           positive: index4Change >= 0,
           negative: !(index4Change >= 0),
@@ -56,10 +52,9 @@
       </span>
     </div>
 
-    <div class="betas">
+    <div class="indices">
       Resources Index (30 Days): {{ index5 }}
       <span
-        id="allShareNumber"
         v-bind:class="{
           positive: index5Change >= 0,
           negative: !(index5Change >= 0),
@@ -76,49 +71,47 @@
 //Axios stuff
 import axios from 'axios'
 
-var period = 22
-
 export default {
   name: 'Highlights',
   data() {
     return {
       period: 22,
 
-      index1: [1, 2, 3],
-      index1Change: [1, 2, 3],
-      index1Sign: false,
+      index1: {
+        value: 0,
+        change: 0,
+        isPositive: false,
+      },
 
-      index2: [1, 2, 3],
-      index2Change: [1, 2, 3],
+      index2: [],
+      index2Change: [],
       index2Sign: false,
 
-      index3: [1, 2, 3],
-      index3Change: [1, 2, 3],
+      index3: [],
+      index3Change: [],
       index3Sign: false,
 
-      index4: [1, 2, 3],
-      index4Change: [1, 2, 3],
+      index4: [],
+      index4Change: [],
       index4Sign: false,
 
-      index5: [1, 2, 3],
-      index5Change: [1, 2, 3],
+      index5: [],
+      index5Change: [],
       index5Sign: false,
     }
   },
   mounted() {
     //Getting the info for JSE All Share Index
-    axios
-      .get('/api/shares?share=J203')
-      .then((response) => (this.index1 = response.data[1].value.toFixed(0)))
-    axios
-      .get('/api/shares?share=J203')
-      .then(
-        (response) =>
-          (this.index1Change = (
-            (response.data[1].value / response.data[period].value - 1) *
+    axios.get('/api/shares?share=J203').then(
+      (response) =>
+        (this.index1 = {
+          value: response.data[1].value.toFixed(0),
+          change: (
+            (response.data[1].value / response.data[this.period].value - 1) *
             100
-          ).toFixed(0)),
-      )
+          ).toFixed(0),
+        }),
+    )
 
     //Getting the info for JSE Top 40 Index
     axios
@@ -129,7 +122,7 @@ export default {
       .then(
         (response) =>
           (this.index2Change = (
-            (response.data[1].value / response.data[period].value - 1) *
+            (response.data[1].value / response.data[this.period].value - 1) *
             100
           ).toFixed(0)),
       )
@@ -143,7 +136,7 @@ export default {
       .then(
         (response) =>
           (this.index3Change = (
-            (response.data[1].value / response.data[period].value - 1) *
+            (response.data[1].value / response.data[this.period].value - 1) *
             100
           ).toFixed(0)),
       )
@@ -157,7 +150,7 @@ export default {
       .then(
         (response) =>
           (this.index4Change = (
-            (response.data[1].value / response.data[period].value - 1) *
+            (response.data[1].value / response.data[this.period].value - 1) *
             100
           ).toFixed(0)),
       )
@@ -171,7 +164,7 @@ export default {
       .then(
         (response) =>
           (this.index5Change = (
-            (response.data[1].value / response.data[period].value - 1) *
+            (response.data[1].value / response.data[this.period].value - 1) *
             100
           ).toFixed(0)),
       )
@@ -184,7 +177,7 @@ export default {
   display: flex;
 }
 
-.betas {
+.indices {
   flex: 1 1 auto;
   text-transform: uppercase;
   font-weight: bold;
