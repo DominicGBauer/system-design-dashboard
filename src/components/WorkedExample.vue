@@ -186,10 +186,12 @@
     />
     <p class="equation">
       Portfolio Specific Risk =
-      <span style="vertical-align: 16%">&radic;</span>
-      <span style="text-decoration: overline">
-        (0.4 × 20.67%)&sup2; + (0.1 × 24.07%)&sup2; + (0.2 × 29.15%)&sup2; +
-        (0.3 × 18.43%)&sup2;
+      <span>
+        <span style="vertical-align: 16%">&radic;</span>
+        <span style="text-decoration: overline">
+          (0.4 × 20.67%)&sup2; + (0.1 × 24.07%)&sup2; + (0.2 × 29.15%)&sup2; +
+          (0.3 × 18.43%)&sup2;
+        </span>
       </span>
     </p>
     <p class="equation">= 11.78%</p>
@@ -216,9 +218,11 @@
     />
     <p class="equation">
       Portfolio’s Total Risk =
-      <span style="vertical-align: 16%">&radic;</span>
-      <span style="text-decoration: overline">
-        (17.17)&sup2; + (11.78)&sup2;
+      <span>
+        <span style="vertical-align: 16%">&radic;</span>
+        <span style="text-decoration: overline">
+          (17.17)&sup2; + (11.78)&sup2;
+        </span>
       </span>
     </p>
     <p class="equation">= 20.82%</p>

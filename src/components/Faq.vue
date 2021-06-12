@@ -115,8 +115,10 @@
       annualised. Hence, a standard deviation of 48.5% should be interpreted as
       48.5% per annum. To convert this into monthly terms, simply divide the
       published figure by the square root of 12, i.e. (48.5%) /
-      <span style="vertical-align: 16%">&radic;</span>
-      <span style="text-decoration: overline"> 12 </span>
+      <span>
+        <span style="vertical-align: 16%">&radic;</span>
+        <span style="text-decoration: overline"> 12 </span>
+      </span>
       = 14% per
     </p>
   </div>
