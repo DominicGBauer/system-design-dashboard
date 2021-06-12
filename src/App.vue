@@ -48,9 +48,4 @@ export default {
 body {
   margin: 0;
 }
-.pie-chart-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-}
 </style>

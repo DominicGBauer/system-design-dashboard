@@ -11,7 +11,7 @@ import {
   TooltipComponent,
   LegendComponent,
 } from 'echarts/components'
-import VChart from 'vue-echarts'
+import VChart, { THEME_KEY } from 'vue-echarts'
 import { ref, defineComponent, onMounted } from 'vue'
 import axios from 'axios'
 
@@ -25,8 +25,12 @@ use([
 
 export default defineComponent({
   name: 'PieChart',
+
   components: {
     VChart,
+  },
+  provide: {
+    [THEME_KEY]: 'light',
   },
   props: {
     indexName: String,
