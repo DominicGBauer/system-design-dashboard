@@ -3,7 +3,7 @@
     <Highlights />
     <Heading />
     <Introduction />
-    <PieChart />
+    <PieCharts />
     <Faq />
     <WorkedExample />
   </div>
@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import PieChart from './components/PieChart.vue'
+import PieCharts from './components/PieCharts.vue'
 import Heading from './components/Heading.vue'
 import Faq from './components/Faq.vue'
 import Introduction from './components/Introduction.vue'
@@ -25,7 +25,7 @@ export default {
     Highlights,
     Heading,
     Introduction,
-    PieChart,
+    PieCharts,
     Faq,
     WorkedExample,
     Footer,

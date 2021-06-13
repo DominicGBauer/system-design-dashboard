@@ -25,16 +25,22 @@ use([
 
 export default defineComponent({
   name: 'PieChart',
+
   components: {
     VChart,
   },
   provide: {
     [THEME_KEY]: 'light',
   },
-  setup() {
+  props: {
+    indexName: String,
+    centeringLong: { type: String, default: '40%' },
+    centeringLat: { type: String, default: '50%' },
+  },
+  setup(props) {
     const option = ref({
       title: {
-        text: 'Top 40',
+        text: props.indexName,
         left: 'center',
       },
       tooltip: {
@@ -43,10 +49,10 @@ export default defineComponent({
       },
       series: [
         {
-          name: 'Top 40',
+          name: props.indexName,
           type: 'pie',
           radius: '45%',
-          center: ['40%', '50%'],
+          center: [props.centeringLat, props.centeringLong],
           data: [],
           emphasis: {
             itemStyle: {
@@ -60,14 +66,16 @@ export default defineComponent({
     })
 
     onMounted(async () => {
-      const info = await axios.get('/api/top40?date=2021-03-23')
+      const info = await axios.get(
+        `/api/index?date=2021-03-23&indexName=${props.indexName}`,
+      )
 
       option.value.series = [
         {
-          name: 'Top 40',
+          name: props.indexName,
           type: 'pie',
           radius: '45%',
-          center: ['40%', '50%'],
+          center: [props.centeringLat, props.centeringLong],
           data: info.data,
           emphasis: {
             itemStyle: {
@@ -87,6 +95,7 @@ export default defineComponent({
 
 <style scoped>
 .pie-chart {
-  height: 500px;
+  height: 550px;
+  width: 550px;
 }
 </style>
