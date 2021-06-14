@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <h1>The Equity Risk Service at Your Fingertips</h1>
+  <div class="container">
+    <h1>Intro</h1>
     <p>
       This dashboard offers an easy way to access the ERS provided by The
       African Institute of Financial Markets and Risk Management. This service
@@ -19,6 +19,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.container {
+  margin: 80px 0 120px 0;
+}
 h1 {
   margin: 40px 0;
 }

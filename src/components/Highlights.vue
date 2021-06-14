@@ -176,6 +176,8 @@ export default {
 <style lang="scss" scoped>
 .highlights-bar {
   display: flex;
+  padding: 1rem 10%;
+  background-color: #eeeeee;
 }
 
 .indices {
