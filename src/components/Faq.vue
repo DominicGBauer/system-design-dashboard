@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="faq">
     <h1>FAQ</h1>
     <h2>How is beta computed?</h2>
     <paragraph

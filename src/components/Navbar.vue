@@ -1,10 +1,16 @@
 <template>
   <nav>
-    <ul class="container">
-      <h6><a href="#Highlights">HIGHLIGHTS</a></h6>
-      <h6><a href="#PieChart">VISUALISATION</a></h6>
-      <h6><a href="#Faq">FAQ</a></h6>
-      <h6><a href="#WorkedExample">WORKED EXAMPLE</a></h6>
+    <img src="../assets/aifmrm_logo.svg" />
+    <ul class="links-container">
+      <h6>
+        <a href="#graphs">Visualisation</a>
+      </h6>
+      <h6>
+        <a href="#faq">FAQ</a>
+      </h6>
+      <h6>
+        <a href="#example">Worked Example</a>
+      </h6>
     </ul>
   </nav>
 </template>
@@ -12,18 +18,29 @@
 <style lang="scss" scoped>
 nav {
   background-color: #2c3e50;
-  color: white;
   display: flex;
-  flex-direction: column;
-  justify-content: right;
-  padding: 2rem;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 10%;
 
-  p {
-    margin: 5px;
+  img {
+    padding: 24px;
+    height: 100px;
   }
 
-  a {
-    color: rgb(255, 255, 255);
+  .links-container {
+    display: flex;
+    justify-content: space-around;
+    width: 40%;
+
+    a {
+      font-size: 18px;
+      color: rgb(255, 255, 255);
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
   }
 }
 </style>

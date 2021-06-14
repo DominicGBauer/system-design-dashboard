@@ -1,5 +1,5 @@
 <template>
-  <h1>Graphs</h1>
+  <h1 id="graphs">Graphs</h1>
   <div class="pie-chart-container">
     <PieChart indexName="FINI" />
     <PieChart indexName="RESI" />
