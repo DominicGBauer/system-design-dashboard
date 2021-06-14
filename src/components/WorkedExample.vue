@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="example">
     <h1>Worked Example</h1>
     <paragraph
       text="In this worked example, assume that you have a portfolio consisting of
