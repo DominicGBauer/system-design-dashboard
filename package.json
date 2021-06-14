@@ -19,8 +19,7 @@
     "echarts": "^5.1.1",
     "vue": "^3.0.0",
     "vue-axios": "^3.2.4",
-    "vue-echarts": "*",
-    "vue3-apexcharts": "^1.3.0"
+    "vue-echarts": "6.0.0-rc.6"
   },
   "devDependencies": {
     "@babel/core": "^7.14.3",
@@ -40,6 +39,7 @@
     "eslint-plugin-prettier": "^3.3.1",
     "eslint-plugin-vue": "^7.0.0",
     "husky": "^6.0.0",
+    "jest-serializer-vue": "^2.0.2",
     "node-sass": "^5.0.0",
     "package-json-help": "^0.0.11",
     "prettier": "^2.2.1",

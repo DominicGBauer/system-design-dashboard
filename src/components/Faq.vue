@@ -18,18 +18,12 @@
 
     <h2>Could you estimate beta?</h2>
     <paragraph
-      text="This service differs from others in that the estimation procedure is
-      refined and enhanced to improve the accuracy of the risk estimates. Two
-      adjustments have been effected to the standard estimation procedure - the
-      first improves the sampling-theory beta estimate by reducing sampling
-      error, while the second further improves this estimate by reducing
-      estimation error. Firstly, a thin-trading correction procedure, known as
-      the trade-to-trade procedure, is implemented to preclude biases in sample
-      beta estimates caused by thin-trading. Secondly, a Bayesian adjustment is
-      implemented which reduces estimation error by incorporating prior
-      distributional information on sample beta estimates. Prior research by BNP
-      has shown that this adjustment improves the predictability of betas by
-      approximately 20%"
+      text="There is no reason why not. One would, however, need a time-series of both the share returns, volumes
+      as well as the market index returns. Be careful though, as there are some techniques which can make all
+      the difference between good and bad estimates. This service implements techniques that improve beta
+      estimation, especially for thinly-traded shares. On this basis, it’s advisable and prudent to use the beta
+      estimates provided by this service. Should more information be required in this regard, please contact
+      the relevant contact person at AIFMRM."
     />
 
     <h2>What estimation periods are used?</h2>
@@ -45,7 +39,15 @@
       points that were used in the estimation procedure. It is advisable that
       the betas of these companies are used with caution, especially if there
       are less than about 40 data points indicated in the column headed ‘#
-      Points’"
+      Points’."
+    />
+
+    <paragraph
+      text=" In the beta tables, some of the more recently listed companies have less
+      than 60 data points that were used in the estimation procedure. It is advisable that
+      the betas of these companies are used with caution, especially if there
+      are less than about 40 data points indicated in the column headed ‘#
+      Points’."
     />
 
     <h2>Are betas stable?</h2>
@@ -74,6 +76,15 @@
       significant in the portfolio context."
     />
 
+    <h2>How will trading shares affect a portfolio’s risk?</h2>
+    <paragraph
+      text="Assuming the existing portfolio is diversified, the beta of the portfolio is the
+      primary measure that determines the risk of the portfolio. Consequently, only the beta of the
+      company being traded can influence the risk of the portfolio. One can determine the effect of
+      the additional share on the portfolio’s risk by remembering that the beta of the portfolio
+      is simply the weighted average of its constituent betas."
+    />
+
     <h2>Why the emphasis on beta, if it’s not conclusive?</h2>
     <paragraph
       text="Most individuals attempt to hold diversified portfolios to reduce unique
@@ -84,28 +95,32 @@
       movements."
     />
 
-    <h2>What exactly are R**2 and 1 − R**2</h2>
+    <h2>What exactly are R&sup2; and 1 − R&sup2;</h2>
 
     <paragraph
-      text="Technically, the R2 indicates how well the “best fitting” regression line
+      text="Technically, the R&sup2; indicates how well the “best fitting” regression line
       “fits” the data points. Interpreting this in a more useful way, it tells
       one what proportion of the share’s movement is due to market movements,
       i.e. the proportion of market risk relative to total risk. Clearly then, 1
-      − R2 tells one what proportion of the share’s movement is due to unique
-      factors, i.e. 1 − R2 measures the proportion of unique risk relative to
+      − R&sup2; tells one what proportion of the share’s movement is due to unique
+      factors, i.e. 1 − R&sup2; measures the proportion of unique risk relative to
       total risk."
     />
 
     <h2>Annual to monthly standard deviation/volatility?</h2>
 
-    <paragraph
-      text="The standard deviations (or volatilities) provided in the tables in the
+    <p>
+      The standard deviations (or volatilities) provided in the tables in the
       accompanying Excel workbook are calculated on a monthly basis, and then
       annualised. Hence, a standard deviation of 48.5% should be interpreted as
       48.5% per annum. To convert this into monthly terms, simply divide the
-      published figure by the square root of 12, i.e. (48.5%)/√ 12 = 14% per
-      month."
-    />
+      published figure by the square root of 12, i.e. (48.5%) /
+      <span>
+        <span style="vertical-align: 16%">&radic;</span>
+        <span style="text-decoration: overline"> 12 </span>
+      </span>
+      = 14% per
+    </p>
   </div>
 </template>
 
@@ -122,9 +137,15 @@ export default {
 
 <style lang="scss" scoped>
 h1 {
-  margin: 40px 0;
+  margin: 6rem 0 3rem 0;
 }
+
+h2 {
+  text-align: left;
+}
+
 p {
-  margin: 40px 0;
+  margin: 2rem 0;
+  text-align: left;
 }
 </style>
