@@ -8,8 +8,8 @@
     />
     <div class="table-container">
       <table>
-        <caption style="caption-side: bottom">
-          Table 30: Portfolio Summary
+        <caption>
+          Table 1: Portfolio Summary
         </caption>
         <tr>
           <th>Share</th>
@@ -134,8 +134,8 @@
     />
     <div class="table-container">
       <table>
-        <caption style="caption-side: bottom">
-          Table 31: Individual Share Risk Decomposition
+        <caption>
+          Table 2: Individual Share Risk Decomposition
         </caption>
         <tr>
           <th>Share</th>
@@ -415,5 +415,11 @@ th {
 td,
 th {
   padding: 6px;
+}
+
+caption {
+  padding: 16px;
+  font-weight: bold;
+  caption-side: bottom;
 }
 </style>

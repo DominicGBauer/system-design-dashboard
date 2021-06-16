@@ -6,4 +6,9 @@ describe('Faq.vue', () => {
     const wrapper = shallowMount(Faq, {})
     expect(wrapper.text()).toMatch('FAQ')
   })
+
+  it('renders the FAQ and it looks the same', () => {
+    const wrapper = shallowMount(Faq, {})
+    expect(wrapper.element).toMatchSnapshot()
+  })
 })
