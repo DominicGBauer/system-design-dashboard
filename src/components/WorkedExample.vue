@@ -8,6 +8,9 @@
     />
     <div class="table-container">
       <table>
+        <caption>
+          Table 1: Portfolio Summary
+        </caption>
         <tr>
           <th>Share</th>
           <th>Sector</th>
@@ -131,6 +134,9 @@
     />
     <div class="table-container">
       <table>
+        <caption>
+          Table 2: Individual Share Risk Decomposition
+        </caption>
         <tr>
           <th>Share</th>
           <th>AGL</th>
@@ -146,7 +152,7 @@
           <td>7.75%</td>
         </tr>
         <tr>
-          <td>1- R&sup2;</td>
+          <td>1 - R&sup2;</td>
 
           <td>29.57%</td>
           <td>79.16%</td>
@@ -179,10 +185,16 @@
     </div>
 
     <paragraph
+      text="The systematic risk for each share may have also been obtained by simply multiplying the beta values
+      by the annualised standard deviation of the J203 (the market proxy, in this case) as was done when the
+      magnitude of portfolio systematic risk was computed."
+    />
+
+    <paragraph
       text="The calculation of the specific risk of the portfolio is shown below. Here
       the investment proportion is multiplied by the specific risk, squared and
       then summed across the constituent shares. Finally, the square root of the
-      result yields the portfolio’s specific risk"
+      result yields the portfolio’s specific risk."
     />
     <p class="equation">
       Portfolio Specific Risk =
@@ -233,7 +245,7 @@
     />
 
     <p class="equation">
-      R&sup2; = (17.17)&sup2; (Portfolio’s Total Risk)&sup2;
+      R&sup2; = (17.17)&sup2; /(Portfolio’s Total Risk)&sup2;
     </p>
     <p class="equation">= 68%</p>
 
@@ -403,5 +415,11 @@ th {
 td,
 th {
   padding: 6px;
+}
+
+caption {
+  padding: 16px;
+  font-weight: bold;
+  caption-side: bottom;
 }
 </style>

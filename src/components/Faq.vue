@@ -11,9 +11,8 @@
       month-end, the aforementioned returns are computed between last and
       previous trade dates - this is the thin trading adjustment. If one were to
       plot these points with the index’s returns on the horizontal axis and the
-      share’s returns on the vertical axis (as shown below), beta would be the
-      slope of the line that best fits these points. This is illustrated in the
-      figure below (need to insert figure here)"
+      share’s returns on the vertical axis, beta would be the
+      slope of the line that best fits these points."
     />
 
     <h2>Could you estimate beta?</h2>
@@ -34,12 +33,7 @@
       of beta point to five years of data as being most reasonable. It should
       also be noted that using daily or even weekly prices to maximise the
       number of data points is futile as it introduces considerable noise
-      (error) that can introduce significantly biased estimates. In the beta
-      tables, some of the more recently listed companies have less than 60 data
-      points that were used in the estimation procedure. It is advisable that
-      the betas of these companies are used with caution, especially if there
-      are less than about 40 data points indicated in the column headed ‘#
-      Points’."
+      (error) that can introduce significantly biased estimates."
     />
 
     <paragraph
@@ -53,7 +47,7 @@
     <h2>Are betas stable?</h2>
     <paragraph
       text="Betas do change! The major causes for the changes in a company’s beta are
-      linked to a shift in the debtto-equity ratio of a company or a shift in
+      linked to a shift in the debt-to-equity ratio of a company or a shift in
       the risk of the projects that the company undertakes."
     />
 
@@ -119,7 +113,7 @@
         <span style="vertical-align: 16%">&radic;</span>
         <span style="text-decoration: overline"> 12 </span>
       </span>
-      = 14% per
+      = 14% per month.
     </p>
   </div>
 </template>

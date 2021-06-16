@@ -1,10 +1,12 @@
 <template>
   <NavBar />
   <Highlights />
+  <Heading />
   <div class="app-container">
-    <Heading />
     <Introduction />
-    <PieCharts />
+  </div>
+  <PieCharts />
+  <div class="app-container">
     <Faq />
     <WorkedExample />
   </div>
@@ -46,7 +48,7 @@ export default {
   max-width: 100%;
 }
 .app-container {
-  margin: 2rem 10%;
+  margin: 2rem 20%;
 }
 body {
   margin: 0;
