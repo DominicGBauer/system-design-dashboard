@@ -113,7 +113,7 @@
         <span style="vertical-align: 16%">&radic;</span>
         <span style="text-decoration: overline"> 12 </span>
       </span>
-      = 14% per month. 
+      = 14% per month.
     </p>
   </div>
 </template>

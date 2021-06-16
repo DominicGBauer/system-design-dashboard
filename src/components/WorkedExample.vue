@@ -8,7 +8,9 @@
     />
     <div class="table-container">
       <table>
-      <caption style="caption-side:bottom">Table 30: Portfolio Summary</caption>
+        <caption style="caption-side: bottom">
+          Table 30: Portfolio Summary
+        </caption>
         <tr>
           <th>Share</th>
           <th>Sector</th>
@@ -132,7 +134,9 @@
     />
     <div class="table-container">
       <table>
-      <caption style="caption-side:bottom">Table 31: Individual Share Risk Decomposition</caption>
+        <caption style="caption-side: bottom">
+          Table 31: Individual Share Risk Decomposition
+        </caption>
         <tr>
           <th>Share</th>
           <th>AGL</th>
@@ -177,12 +181,10 @@
           <td>29.15%</td>
           <td>18.43%</td>
         </tr>
-      
       </table>
-      
     </div>
 
-  	<paragraph
+    <paragraph
       text="The systematic risk for each share may have also been obtained by simply multiplying the beta values
       by the annualised standard deviation of the J203 (the market proxy, in this case) as was done when the
       magnitude of portfolio systematic risk was computed."
