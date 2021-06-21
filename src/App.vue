@@ -36,7 +36,7 @@ export default {
     SyntheticTable,
     Faq,
     WorkedExample,
-    
+
     Footer,
   },
 }
