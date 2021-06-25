@@ -35,7 +35,7 @@ export default {
     PieCharts,
     SyntheticTable,
     Faq,
-    WorkedExample,   
+    WorkedExample,
     Footer,
   },
 }
