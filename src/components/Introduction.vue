@@ -20,6 +20,7 @@ export default {
 .container {
   margin: 80px 0 120px 0;
 }
+
 h1 {
   margin: 40px 0;
 }

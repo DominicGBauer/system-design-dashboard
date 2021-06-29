@@ -6,6 +6,7 @@
     <Introduction />
   </div>
   <PieCharts />
+  <SyntheticTable />
   <div class="app-container">
     <Faq />
     <WorkedExample />
@@ -22,6 +23,7 @@ import WorkedExample from './components/WorkedExample.vue'
 import Footer from './components/Footer.vue'
 import Highlights from './components/Highlights.vue'
 import NavBar from './components/NavBar.vue'
+import SyntheticTable from './components/SyntheticTable.vue'
 
 export default {
   name: 'App',
@@ -31,6 +33,7 @@ export default {
     Heading,
     Introduction,
     PieCharts,
+    SyntheticTable,
     Faq,
     WorkedExample,
     Footer,
