@@ -1,5 +1,5 @@
 <template>
-  <div id="faq">
+  <div class="container">
     <h1>FAQ</h1>
     <h2>How is beta computed?</h2>
     <paragraph
@@ -119,7 +119,7 @@
 </template>
 
 <script>
-import Paragraph from './Paragraph'
+import Paragraph from '../components/Paragraph.vue'
 
 export default {
   name: 'Faq',
@@ -130,16 +130,20 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-h1 {
-  margin: 6rem 0 3rem 0;
-}
+.container {
+  margin: 2rem 20%;
 
-h2 {
-  text-align: left;
-}
+  h1 {
+    margin-bottom: 3rem;
+  }
 
-p {
-  margin: 2rem 0;
-  text-align: left;
+  h2 {
+    text-align: left;
+  }
+
+  p {
+    margin: 2rem 0;
+    text-align: left;
+  }
 }
 </style>

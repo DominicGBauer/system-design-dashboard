@@ -1,5 +1,5 @@
 <template>
-  <div id="example">
+  <div class="container">
     <h1>Worked Example</h1>
     <paragraph
       text="In this worked example, assume that you have a portfolio consisting of
@@ -365,7 +365,7 @@
 </template>
 
 <script>
-import Paragraph from './Paragraph.vue'
+import Paragraph from '../components/Paragraph.vue'
 
 export default {
   name: 'WorkedExample',
@@ -376,50 +376,54 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-h1 {
-  margin: 6rem 0 3rem 0;
-}
+.container {
+  margin: 2rem 20%;
 
-h2 {
-  text-align: left;
-  margin: 2rem 0;
-}
+  h1 {
+    margin-bottom: 3rem;
+  }
 
-p {
-  text-align: left;
-}
+  h2 {
+    text-align: left;
+    margin: 2rem 0;
+  }
 
-.equation {
-  display: flex;
-  justify-content: center;
-  margin: 1.5rem;
-}
+  p {
+    text-align: left;
+  }
 
-.table-container {
-  display: flex;
-  justify-content: center;
-  margin: 3rem;
-}
+  .equation {
+    display: flex;
+    justify-content: center;
+    margin: 1.5rem;
+  }
 
-table {
-  border-collapse: collapse;
-}
+  .table-container {
+    display: flex;
+    justify-content: center;
+    margin: 3rem;
+  }
 
-table,
-tr,
-td,
-th {
-  border: 1px solid black;
-}
+  table {
+    border-collapse: collapse;
+  }
 
-td,
-th {
-  padding: 6px;
-}
+  table,
+  tr,
+  td,
+  th {
+    border: 1px solid black;
+  }
 
-caption {
-  padding: 16px;
-  font-weight: bold;
-  caption-side: bottom;
+  td,
+  th {
+    padding: 6px;
+  }
+
+  caption {
+    padding: 16px;
+    font-weight: bold;
+    caption-side: bottom;
+  }
 }
 </style>

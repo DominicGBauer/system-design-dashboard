@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="heading-container">
     <div>
       <h1>AIFMRM Equity Risk Service Dashboard</h1>
       <h2>The Equity Risk Service at Your Fingertips</h2>
@@ -15,10 +15,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.container {
-  margin: 2rem 10%;
+.heading-container {
   display: flex;
   align-items: center;
+  margin: 2rem 10%;
 
   img {
     max-width: 800px;

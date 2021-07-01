@@ -64,14 +64,14 @@
 </template>
 
 <script>
-//Axios stuff
 import axios from 'axios'
 
 export default {
   name: 'Highlights',
+
   data() {
     return {
-      period: 66,
+      daysInAQuarter: 66,
 
       allShare: {
         value: 0,
@@ -111,7 +111,7 @@ export default {
           value: response.data[response.data.length - 1].value.toFixed(0),
           change: (
             (response.data[response.data.length - 1].value /
-              response.data[response.data.length - this.period].value -
+              response.data[response.data.length - this.daysInAQuarter].value -
               1) *
             100
           ).toFixed(0),
@@ -124,7 +124,7 @@ export default {
           value: response.data[response.data.length - 1].value.toFixed(0),
           change: (
             (response.data[response.data.length - 1].value /
-              response.data[response.data.length - this.period].value -
+              response.data[response.data.length - this.daysInAQuarter].value -
               1) *
             100
           ).toFixed(0),
@@ -137,7 +137,7 @@ export default {
           value: response.data[response.data.length - 1].value.toFixed(0),
           change: (
             (response.data[response.data.length - 1].value /
-              response.data[response.data.length - this.period].value -
+              response.data[response.data.length - this.daysInAQuarter].value -
               1) *
             100
           ).toFixed(0),
@@ -150,7 +150,7 @@ export default {
           value: response.data[response.data.length - 1].value.toFixed(0),
           change: (
             (response.data[response.data.length - 1].value /
-              response.data[response.data.length - this.period].value -
+              response.data[response.data.length - this.daysInAQuarter].value -
               1) *
             100
           ).toFixed(0),
@@ -163,7 +163,7 @@ export default {
           value: response.data[response.data.length - 1].value.toFixed(0),
           change: (
             (response.data[response.data.length - 1].value /
-              response.data[response.data.length - this.period].value -
+              response.data[response.data.length - this.daysInAQuarter].value -
               1) *
             100
           ).toFixed(0),
@@ -176,12 +176,12 @@ export default {
 <style lang="scss" scoped>
 .highlights-bar {
   display: flex;
+  justify-content: space-between;
   padding: 1rem 10%;
   background-color: #eeeeee;
 }
 
 .indices {
-  flex: 1 1 auto;
   text-transform: uppercase;
   font-weight: bold;
   font-size: 13px;

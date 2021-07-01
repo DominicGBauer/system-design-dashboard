@@ -1,5 +1,5 @@
 import { shallowMount } from '@vue/test-utils'
-import WorkedExample from '@/components/WorkedExample.vue'
+import WorkedExample from '@/views/WorkedExample.vue'
 
 describe('WorkedExample.vue', () => {
   it('renders the WorkedExample', () => {

@@ -12,8 +12,7 @@ import {
   LegendComponent,
 } from 'echarts/components'
 import VChart, { THEME_KEY } from 'vue-echarts'
-import { ref, defineComponent, onMounted } from 'vue'
-import axios from 'axios'
+import { ref, defineComponent, watchEffect } from 'vue'
 
 use([
   CanvasRenderer,
@@ -34,8 +33,9 @@ export default defineComponent({
   },
   props: {
     indexName: String,
-    centeringLong: { type: String, default: '40%' },
+    centeringLong: { type: String, default: '50%' },
     centeringLat: { type: String, default: '50%' },
+    data: {},
   },
   setup(props) {
     const option = ref({
@@ -53,7 +53,7 @@ export default defineComponent({
           type: 'pie',
           radius: '45%',
           center: [props.centeringLat, props.centeringLong],
-          data: [],
+          data: props.data,
           emphasis: {
             itemStyle: {
               shadowBlur: 10,
@@ -65,28 +65,29 @@ export default defineComponent({
       ],
     })
 
-    onMounted(async () => {
-      const info = await axios.get(
-        `/api/index?date=2021-03-23&indexName=${props.indexName}`,
-      )
-
-      option.value.series = [
-        {
-          name: props.indexName,
-          type: 'pie',
-          radius: '45%',
-          center: [props.centeringLat, props.centeringLong],
-          data: info.data,
-          emphasis: {
-            itemStyle: {
-              shadowBlur: 10,
-              shadowOffsetX: 0,
-              shadowColor: 'rgba(0, 0, 0, 0.5)',
+    watchEffect(
+      () =>
+        (option.value.series = [
+          {
+            name: props.indexName,
+            type: 'pie',
+            radius: '45%',
+            center: [props.centeringLat, props.centeringLong],
+            data: props.data,
+            emphasis: {
+              itemStyle: {
+                shadowBlur: 10,
+                shadowOffsetX: 0,
+                shadowColor: 'rgba(0, 0, 0, 0.5)',
+              },
             },
           },
-        },
-      ]
-    })
+        ]),
+    )
+
+    watchEffect(
+      () => (option.value.title = { text: props.indexName, left: 'center' }),
+    )
 
     return { option }
   },
