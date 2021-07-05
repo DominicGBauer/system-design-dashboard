@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "build": "vue-cli-service build",
-    "test:unit": "vue-cli-service test:unit",
+    "test": "vue-cli-service test:unit",
+    "test:watch": "vue-cli-service test:unit --watch",
     "lint": "vue-cli-service lint",
     "help": "package-json-help.js",
     "lint:fix": "vue-cli-service lint --fix",
@@ -13,7 +14,6 @@
     "start": "vue-cli-service serve"
   },
   "dependencies": {
-    "apexcharts": "^3.26.1",
     "axios": "^0.21.1",
     "core-js": "^3.6.5",
     "echarts": "^5.1.1",
@@ -23,6 +23,7 @@
     "vue-json-csv": "^1.2.12",
     "vue-multiselect": "^3.0.0-alpha.2",
     "vue-router": "^4.0.10",
+    "vue3-burger-menu": "^1.1.1",
     "vuex": "^4.0.2"
   },
   "devDependencies": {

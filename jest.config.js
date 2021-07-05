@@ -4,6 +4,8 @@ module.exports = {
     '^.+\\.vue$': 'vue-jest',
     '^.+\\.js$': 'babel-jest',
   },
-  transformIgnorePatterns: ['/node_modules/(?!echarts|zrender)'],
+  transformIgnorePatterns: [
+    '/node_modules/(?!echarts|zrender|vue-multiselect)',
+  ],
   snapshotSerializers: ['jest-serializer-vue'],
 }

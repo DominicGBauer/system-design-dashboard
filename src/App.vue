@@ -1,6 +1,6 @@
 <template>
   <NavBar />
-  <Highlights />
+  <Highlights v-if="!isMobile()" />
   <router-view />
   <Footer />
 </template>
@@ -16,6 +16,18 @@ export default {
     NavBar,
     Footer,
     Highlights,
+  },
+  methods: {
+    created() {
+      this.isMobile()
+    },
+    isMobile() {
+      if (screen.width <= 760) {
+        return true
+      } else {
+        return false
+      }
+    },
   },
 }
 </script>
@@ -57,5 +69,11 @@ button:active {
 
 button:active {
   transform: translateY(4px);
+}
+
+.bm-burger-button {
+  left: auto;
+  right: 36px;
+  color: white;
 }
 </style>

@@ -1,13 +1,6 @@
 <template>
   <div class="page-container">
     <h1>Synthetic Table</h1>
-    <p>
-      This table goes beyond the composite risk statistics of the report and
-      shows a synthetic construction of the most important risk statistics for
-      an index based on its constituents. These statistics are then aggregated
-      as per the constituents weight in the index. Below is an example of such a
-      synthethic table using the All Share Index:
-    </p>
     <div class="select-container">
       <p><strong>Select a Quarter</strong></p>
       <VueMultiselect
@@ -29,10 +22,7 @@
       </VueMultiselect>
 
       <div class="button-container">
-        <button
-          @click="handleClick(currentIndex, currentDate.quarter)"
-          class="main-button"
-        >
+        <button @click="handleClick(currentIndex, currentDate.quarter)">
           Display Table
         </button>
       </div>
@@ -40,39 +30,35 @@
 
     <template v-if="allData && allData[allData.length - 1]">
       <div class="output-container">
-        <div>
-          <div class="portfolio-statistics-container">
-            <p>
-              <strong>Portfolio Beta:</strong>
-              {{ allData[allData.length - 1].portfolio_beta.toFixed(5) }}
-            </p>
-            <p>
-              <strong>Portfolio Systematic Variance:</strong>
-              {{
-                allData[
-                  allData.length - 1
-                ].portfolio_systematic_variance.toFixed(5)
-              }}
-            </p>
-            <p>
-              <strong>Portfolio Specific Variance:</strong>
-              {{
-                allData[allData.length - 1].portfolio_specific_variance.toFixed(
-                  5,
-                )
-              }}
-            </p>
-            <p>
-              <strong>Portfolio Variance:</strong>
-              {{ allData[allData.length - 1].portfolio_variance.toFixed(5) }}
-            </p>
-          </div>
-          <PieChart
-            :indexName="selectedIndex"
-            :data="pieChartData"
-            centeringLong="50%"
-          />
+        <div class="portfolio-statistics-container">
+          <p>
+            <strong>Portfolio Beta:</strong>
+            {{ allData[allData.length - 1].portfolio_beta.toFixed(5) }}
+          </p>
+          <p>
+            <strong>Portfolio Systematic Variance:</strong>
+            {{
+              allData[allData.length - 1].portfolio_systematic_variance.toFixed(
+                5,
+              )
+            }}
+          </p>
+          <p>
+            <strong>Portfolio Specific Variance:</strong>
+            {{
+              allData[allData.length - 1].portfolio_specific_variance.toFixed(5)
+            }}
+          </p>
+          <p>
+            <strong>Portfolio Variance:</strong>
+            {{ allData[allData.length - 1].portfolio_variance.toFixed(5) }}
+          </p>
         </div>
+        <PieChart
+          :indexName="selectedIndex"
+          :data="pieChartData"
+          centeringLong="50%"
+        />
         <div class="table-container">
           <SyntheticTable :data="data" />
         </div>
@@ -169,32 +155,35 @@ export default {
 
 <style lang="scss" scoped>
 .page-container {
-  p {
-    text-align: left;
-  }
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
 
   .select-container {
+    @media (max-width: 800px) {
+      width: 100%;
+    }
+
     width: 400px;
   }
 
   .button-container {
-    display: flex;
-    justify-content: left;
+    margin: 3rem 0 1rem 0;
+  }
 
-    .main-button {
-      margin: 1rem 0;
-    }
+  .table-container {
+    margin-bottom: 3rem;
   }
 
   .output-container {
     display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 
     .portfolio-statistics-container {
-      margin-top: 4rem;
-    }
-
-    .table-container {
-      width: 100%;
+      margin: 4rem 0;
     }
 
     .download-buttons-container {

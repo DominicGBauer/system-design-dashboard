@@ -9,9 +9,8 @@ import { use } from 'echarts/core'
 import { CanvasRenderer } from 'echarts/renderers'
 import { GridComponent } from 'echarts/components'
 import { LineChart } from 'echarts/charts'
-import axios from 'axios'
 import VChart, { THEME_KEY } from 'vue-echarts'
-import { ref, defineComponent, onMounted } from 'vue'
+import { ref, defineComponent, watchEffect } from 'vue'
 
 use([CanvasRenderer, GridComponent, LineChart])
 
@@ -23,38 +22,71 @@ export default defineComponent({
   provide: {
     [THEME_KEY]: 'light',
   },
-  setup() {
+  props: {
+    title: String,
+    data: {},
+  },
+  setup(props) {
     const option = ref({
       title: {
-        text: 'Share',
+        text: props.title,
         left: 'center',
       },
+      tooltip: {
+        trigger: 'axis',
+        formatter: function (params) {
+          params = params[0]
+          var date = new Date(params.name)
+          return (
+            date.getDate() +
+            '/' +
+            (date.getMonth() + 1) +
+            '/' +
+            date.getFullYear() +
+            ' : ' +
+            params.value[1]
+          )
+        },
+        axisPointer: {
+          animation: false,
+        },
+      },
       xAxis: {
-        type: 'category',
+        type: 'time',
+        splitLine: {
+          show: false,
+        },
       },
       yAxis: {
         type: 'value',
       },
       series: [
         {
-          name: 'Share',
+          name: props.title,
           type: 'line',
-          data: [],
+          showSymbol: false,
+          hoverAnimation: false,
+          data: props.data,
         },
       ],
     })
 
-    onMounted(async () => {
-      const info = await axios.get('/api/shares?share=NPN')
+    watchEffect(
+      () =>
+        (option.value.series = [
+          {
+            name: props.title,
+            type: 'line',
+            showSymbol: false,
+            hoverAnimation: false,
+            data: props.data,
+          },
+        ]),
+    )
 
-      option.value.series = [
-        {
-          name: 'Share',
-          type: 'line',
-          data: info.data,
-        },
-      ]
-    })
+    watchEffect(
+      () => (option.value.title = { text: props.title, left: 'center' }),
+    )
 
     return { option }
   },

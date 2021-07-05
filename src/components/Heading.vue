@@ -16,12 +16,20 @@ export default {
 
 <style lang="scss" scoped>
 .heading-container {
+  @media (max-width: 800px) {
+    flex-wrap: wrap-reverse;
+  }
   display: flex;
   align-items: center;
+
   margin: 2rem 10%;
 
   img {
     max-width: 800px;
+
+    @media (max-width: 800px) {
+      max-width: 100%;
+    }
   }
 
   h1 {
