@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ExcelDownloadButton.vue renders the ExcelDownloadButton and it looks the same 1`] = `
+<download-csv>
+  <button
+    class="download-button"
+  >
+     
+    <img
+      src=""
+    />
+  </button>
+</download-csv>
+`;

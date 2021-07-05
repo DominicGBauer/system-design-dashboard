@@ -1,174 +1,93 @@
 <template>
   <div class="highlights-bar">
-    <div class="indices">
-      All Share Index (QTR): {{ allShare.value }}
-      <span
-        :class="{
-          positive: allShare.change >= 0,
-          negative: !(allShare.change >= 0),
-        }"
-      >
-        ({{ allShare.change }}%)
-      </span>
-    </div>
-
-    <div class="indices">
-      Top 40 Index (QTR): {{ top40.value }}
-      <span
-        :class="{
-          positive: top40.change >= 0,
-          negative: !(top40.change >= 0),
-        }"
-      >
-        ({{ top40.change }}%)
-      </span>
-    </div>
-
-    <div class="indices">
-      F&I Index (QTR): {{ fAndI.value }}
-      <span
-        :class="{
-          positive: fAndI.change >= 0,
-          negative: !(fAndI.change >= 0),
-        }"
-      >
-        ({{ fAndI.change }}%)
-      </span>
-    </div>
-
-    <div class="indices">
-      Industrials Index (QTR): {{ industrials.value }}
-      <span
-        :class="{
-          positive: industrials.change >= 0,
-          negative: !(industrials.change >= 0),
-        }"
-      >
-        ({{ industrials.change }}%)
-      </span>
-    </div>
-
-    <div class="indices">
-      Resources Index (QTR): {{ resources.value }}
-      <span
-        :class="{
-          positive: resources.change >= 0,
-          negative: !(resources.change >= 0),
-        }"
-        v-on:mount="resources.isNegative = resources.change <= 0"
-      >
-        ({{ resources.change }}%)
-      </span>
-    </div>
+    <template v-for="index in listOfindices" :key="index">
+      <div class="indices" v-if="index.dates[0]">
+        {{ index.indexName }} (QTR): {{ index.dates[0].value }}
+        <span
+          :class="{
+            positive: !index.isNegative,
+            negative: index.isNegative,
+          }"
+        >
+          ({{ index.changeInQuarter }}%)
+        </span>
+      </div>
+    </template>
   </div>
 </template>
 
 <script>
-//Axios stuff
 import axios from 'axios'
+import { INDEX_CODES } from '../constants'
 
 export default {
   name: 'Highlights',
+
   data() {
     return {
-      period: 66,
-
-      allShare: {
-        value: 0,
-        change: 0,
-        isNegative: false,
+      daysInQuarter: 66,
+      listOfindices: {
+        J200: {
+          dates: {},
+          changeInQuarter: 0,
+          isNegative: null,
+          indexName: 'All Share',
+        },
+        J203: {
+          dates: {},
+          changeInQuarter: 0,
+          isNegative: null,
+          indexName: 'Top 40',
+        },
+        J250: {
+          dates: {},
+          changeInQuarter: 0,
+          isNegative: null,
+          indexName: 'F&I Index',
+        },
+        J257: {
+          dates: {},
+          changeInQuarter: 0,
+          isNegative: null,
+          indexName: 'Industrials',
+        },
+        J258: {
+          dates: {},
+          changeInQuarter: 0,
+          isNegative: null,
+          indexName: 'Resi 10',
+        },
       },
-
-      top40: {
-        value: 0,
-        change: 0,
-        isNegative: false,
-      },
-
-      fAndI: {
-        value: 0,
-        change: 0,
-        isNegative: false,
-      },
-
-      industrials: {
-        value: 0,
-        change: 0,
-        isNegative: false,
-      },
-
-      resources: {
-        value: 0,
-        change: 0,
-        isNegative: false,
-      },
+      INDEX_CODES,
     }
   },
   mounted() {
-    axios.get('/api/shares?share=J203').then(
-      (response) =>
-        (this.allShare = {
-          value: response.data[response.data.length - 1].value.toFixed(0),
-          change: (
-            (response.data[response.data.length - 1].value /
-              response.data[response.data.length - this.period].value -
-              1) *
-            100
-          ).toFixed(0),
-        }),
-    )
-
-    axios.get('/api/shares?share=J200').then(
-      (response) =>
-        (this.top40 = {
-          value: response.data[response.data.length - 1].value.toFixed(0),
-          change: (
-            (response.data[response.data.length - 1].value /
-              response.data[response.data.length - this.period].value -
-              1) *
-            100
-          ).toFixed(0),
-        }),
-    )
-
-    axios.get('/api/shares?share=J250').then(
-      (response) =>
-        (this.fAndI = {
-          value: response.data[response.data.length - 1].value.toFixed(0),
-          change: (
-            (response.data[response.data.length - 1].value /
-              response.data[response.data.length - this.period].value -
-              1) *
-            100
-          ).toFixed(0),
-        }),
-    )
-
-    axios.get('/api/shares?share=J257').then(
-      (response) =>
-        (this.industrials = {
-          value: response.data[response.data.length - 1].value.toFixed(0),
-          change: (
-            (response.data[response.data.length - 1].value /
-              response.data[response.data.length - this.period].value -
-              1) *
-            100
-          ).toFixed(0),
-        }),
-    )
-
-    axios.get('/api/shares?share=J258').then(
-      (response) =>
-        (this.resources = {
-          value: response.data[response.data.length - 1].value.toFixed(0),
-          change: (
-            (response.data[response.data.length - 1].value /
-              response.data[response.data.length - this.period].value -
-              1) *
-            100
-          ).toFixed(0),
-        }),
-    )
+    this.getShareData(Object.values(this.INDEX_CODES), this.daysInQuarter)
+  },
+  methods: {
+    getShareData(indices, daysInQuarter) {
+      for (let index of indices) {
+        axios
+          .get(`/api/highlights?share=${index}&daysInQuarter=${daysInQuarter}`)
+          .then((response) => (this.listOfindices[index].dates = response.data))
+          .then(
+            (data) =>
+              (this.listOfindices[index].changeInQuarter =
+                this.calculateChangeInQuarter(
+                  data[0].value,
+                  data[data.length - 1].value,
+                )),
+          )
+          .then((change) => (this.listOfindices[index].isNegative = change < 0))
+      }
+    },
+    calculateChangeInQuarter(currentQuarterValue, previousQuarterValue) {
+      const changeInQuarter = (
+        (currentQuarterValue / previousQuarterValue - 1) *
+        100
+      ).toFixed(0)
+      return changeInQuarter
+    },
   },
 }
 </script>
@@ -176,12 +95,12 @@ export default {
 <style lang="scss" scoped>
 .highlights-bar {
   display: flex;
+  justify-content: space-between;
   padding: 1rem 10%;
   background-color: #eeeeee;
 }
 
 .indices {
-  flex: 1 1 auto;
   text-transform: uppercase;
   font-weight: bold;
   font-size: 13px;

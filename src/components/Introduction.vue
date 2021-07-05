@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="intro-container">
     <h1>Intro</h1>
     <p>
       This dashboard offers a convenient way to access the ERS provided by The
@@ -17,11 +17,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.container {
-  margin: 80px 0 120px 0;
-}
-
-h1 {
-  margin: 40px 0;
+.intro-container {
+  margin-bottom: 4rem;
+  h1 {
+    margin-bottom: 2rem;
+  }
 }
 </style>

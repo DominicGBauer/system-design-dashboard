@@ -1,45 +1,114 @@
 <template>
-  <nav>
-    <img src="../assets/aifmrm_logo.svg" />
-    <ul class="links-container">
-      <h6>
-        <a href="#graphs">Visualisation</a>
-      </h6>
-      <h6>
-        <a href="#faq">FAQ</a>
-      </h6>
-      <h6>
-        <a href="#example">Worked Example</a>
-      </h6>
-    </ul>
+  <nav :class="{ mobile: isMobile() }">
+    <template v-if="isMobile()">
+      <div class="mobile">
+        <router-link to="/">
+          <img src="../assets/aifmrm_logo.svg" />
+        </router-link>
+        <Slide right closeOnNavigation width="400">
+          <router-link to="/" class="link"> Home </router-link>
+          <router-link to="/shares" class="link">Shares</router-link>
+          <router-link to="/interest-rates" class="link"
+            >Interest Rates</router-link
+          >
+          <router-link to="/faq" class="link">FAQ</router-link>
+          <router-link to="/worked-example" class="link"
+            >Worked Example</router-link
+          >
+        </Slide>
+      </div>
+    </template>
+
+    <template v-if="!isMobile()">
+      <div class="nav-container">
+        <router-link to="/">
+          <img src="../assets/aifmrm_logo.svg" />
+        </router-link>
+        <ul class="links-container">
+          <h6>
+            <router-link to="/shares">Shares</router-link>
+          </h6>
+          <h6>
+            <router-link to="/interest-rates">Interest Rates</router-link>
+          </h6>
+          <h6>
+            <router-link to="/faq">FAQ</router-link>
+          </h6>
+          <h6>
+            <router-link to="/worked-example">Worked Example</router-link>
+          </h6>
+        </ul>
+      </div>
+    </template>
   </nav>
 </template>
+
+<script>
+import { Slide } from 'vue3-burger-menu'
+export default {
+  name: 'NavBar',
+  components: {
+    Slide,
+  },
+  created() {
+    this.isMobile()
+  },
+  methods: {
+    isMobile() {
+      if (screen.width <= 760) {
+        return true
+      } else {
+        return false
+      }
+    },
+  },
+}
+</script>
 
 <style lang="scss" scoped>
 nav {
   background-color: #2c3e50;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 10%;
 
-  img {
-    padding: 24px;
-    height: 100px;
+  &.mobile {
+    background-color: white;
   }
 
-  .links-container {
-    display: flex;
-    justify-content: space-around;
-    width: 40%;
+  img {
+    height: 50px;
+  }
 
-    a {
-      font-size: 18px;
-      color: rgb(255, 255, 255);
-      text-decoration: none;
+  .mobile {
+    display: flex;
+    justify-content: space-between;
+
+    img {
+      height: 50px;
+      margin: 24px;
     }
-    a:hover {
-      text-decoration: underline;
+    .link {
+      color: white;
+    }
+  }
+
+  .nav-container {
+    margin: 0 10%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .links-container {
+      display: flex;
+      justify-content: space-around;
+
+      a {
+        font-size: 18px;
+        color: white;
+        text-decoration: none;
+        margin-left: 48px;
+      }
+      a:hover {
+        text-decoration: underline;
+      }
     }
   }
 }
