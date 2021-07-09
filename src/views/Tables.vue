@@ -2,87 +2,99 @@
   <div class="page-container">
     <h1>Synthetic Table</h1>
     <div class="select-container">
-      <p><strong>Select a Quarter</strong></p>
+      <p><strong>Select a quarter</strong></p>
       <VueMultiselect
         v-model="currentDate"
-        :options="dates.dates"
+        :options="dates"
         :searchable="false"
-        label="quarter"
         :allow-empty="false"
+        placeholder="Select a date"
       >
       </VueMultiselect>
 
-      <p><strong>Select an Index</strong></p>
+      <p><strong>Select an index</strong></p>
       <VueMultiselect
-        v-model="currentIndex"
-        :options="indices"
+        v-model="indexName"
+        @select="setIndexName"
+        :options="INDEX_NAMES"
         :searchable="false"
         :allow-empty="false"
+        placeholder="Select an index"
+      >
+      </VueMultiselect>
+
+      <p><strong>Select a market proxy</strong></p>
+      <VueMultiselect
+        v-model="currentMarketProxy"
+        :options="INDEX_CODES"
+        :searchable="false"
+        :allow-empty="false"
+        placeholder="Select a market proxy"
       >
       </VueMultiselect>
 
       <div class="button-container">
-        <button @click="handleClick(currentIndex, currentDate.quarter)">
-          Display Table
+        <button
+          @click="handleClick(indexName, currentDate, currentMarketProxy)"
+          :disabled="!currentMarketProxy || !indexName"
+        >
+          <span v-if="!index.length">Display Graph</span>
+          <span v-else>Update Graph</span>
         </button>
       </div>
     </div>
 
-    <template v-if="allData && allData[allData.length - 1]">
+    <template v-if="portfolioStatistics && table[0]">
       <div class="output-container">
         <div class="portfolio-statistics-container">
           <p>
             <strong>Portfolio Beta:</strong>
-            {{ allData[allData.length - 1].portfolio_beta.toFixed(5) }}
+            {{ portfolioStatistics.portfolio_beta.toFixed(2) }}
           </p>
           <p>
             <strong>Portfolio Systematic Variance:</strong>
-            {{
-              allData[allData.length - 1].portfolio_systematic_variance.toFixed(
-                5,
-              )
-            }}
+            {{ portfolioStatistics.portfolio_systematic_variance.toFixed(2) }}
           </p>
           <p>
             <strong>Portfolio Specific Variance:</strong>
-            {{
-              allData[allData.length - 1].portfolio_specific_variance.toFixed(5)
-            }}
+            {{ portfolioStatistics.portfolio_specific_variance.toFixed(2) }}
           </p>
           <p>
             <strong>Portfolio Variance:</strong>
-            {{ allData[allData.length - 1].portfolio_variance.toFixed(5) }}
+            {{ portfolioStatistics.portfolio_variance.toFixed(2) }}
           </p>
         </div>
-        <PieChart
-          :indexName="selectedIndex"
-          :data="pieChartData"
-          centeringLong="50%"
-        />
-        <div class="table-container">
-          <SyntheticTable :data="data" />
+        <div class="pie-charts-container">
+          <PieChart :indexName="indexName" :data="index" centeringLong="50%" />
+          <PieChart :indexName="indexName" :data="sector" centeringLong="50%" />
         </div>
+        <SyntheticTable
+          :data="table"
+          :indexName="indexName"
+          class="table-container"
+          @go-to-share="goToShare($event, currentDate)"
+        />
       </div>
       <div class="download-buttons-container">
         <ExcelDownloadButton
           name="Specific Covariance Matrix"
           text="Download Specific Covariance Matrix"
-          :data="allData[allData.length - 1].specific_covariance_matrix"
+          :data="portfolioStatistics.specific_covariance_matrix"
         />
         <ExcelDownloadButton
           name="Systematic Covariance Matrix"
           text="Download Systematic Covariance Matrix"
-          :data="allData[allData.length - 1].systematic_covariance_matrix"
+          :data="portfolioStatistics.systematic_covariance_matrix"
         />
         <ExcelDownloadButton
           name="Total Covariance Matrix"
           text="Download Total Covariance Matrix"
-          :data="allData[allData.length - 1].total_covariance_matrix"
+          :data="portfolioStatistics.total_covariance_matrix"
         />
         <ExcelDownloadButton
           name="Correlation Matrix"
           text="Download Correlation Matrix"
-          :data="allData[allData.length - 1].correlation_matrix"
+          :data="portfolioStatistics.correlation_matrix"
         />
       </div>
     </template>
@@ -90,14 +102,14 @@
 </template>
 
 <script>
-import axios from 'axios'
 import SyntheticTable from '../components/SyntheticTable.vue'
 import VueMultiselect from 'vue-multiselect'
 import PieChart from '../components/PieChart.vue'
 import ExcelDownloadButton from '../components/ExcelDownloadButton.vue'
-import { INDEX_NAMES } from '../constants'
+import { INDEX_NAMES, INDEX_CODES } from '../constants'
 import { computed } from '@vue/runtime-core'
 import { useStore } from 'vuex'
+import { useRouter } from 'vue-router'
 
 export default {
   name: 'Tables',
@@ -109,46 +121,74 @@ export default {
   },
   setup() {
     const store = useStore()
-    store.dispatch('dates/getDates')
+    const router = useRouter()
 
     return {
-      dates: computed(() => store.state.dates),
+      dates: computed(() => store.state.dates.dates),
+      index: computed(() => store.state.indices.index),
+      indexName: computed(() => store.state.indices.indexName),
+      sector: computed(() => store.state.indices.sector),
+      shares: computed(() => store.state.shares.shares),
+      table: computed(() => store.getters['indices/filteredTable']),
+      portfolioStatistics: computed(
+        () => store.getters['indices/portfolioStatistics'],
+      ),
+      setIndexName: (indexName) =>
+        store.dispatch('indices/setIndexName', indexName),
+      getIndex: (index, date) =>
+        store.dispatch('indices/getIndex', { index, date }),
+      getSector: (index, date) =>
+        store.dispatch('indices/getSector', { index, date }),
+      getTable: (index, date, marketProxy) =>
+        store.dispatch('indices/getTable', { index, date, marketProxy }),
+      resetState: () => store.dispatch('indices/resetState'),
+      updateShare: (share) => store.dispatch('shares/updateShare', share),
+      updateShareDate: (date) => store.dispatch('shares/updateShareDate', date),
+      getShareTimeSeries: (share) =>
+        store.dispatch('shares/getShareTimeSeries', { share }),
+      getShareTableInfo: (share, date) =>
+        store.dispatch('shares/getShareTableInfo', { share, date }),
+      getShareDates: (share) =>
+        store.dispatch('shares/getShareDates', { share }),
+      goToSharePage: () => {
+        router.push('shares#shares')
+      },
     }
   },
   data() {
     return {
-      data: [],
-      quarters: [],
-      allData: [],
-      indices: INDEX_NAMES,
-      currentIndex: 'RESI',
-      pieChartData: [],
-      currentDate: { quarter: '2021-03-23' },
-      selectedIndex: '',
+      INDEX_NAMES,
+      INDEX_CODES,
+      currentMarketProxy: '',
+      currentDate: '',
     }
   },
-
   methods: {
-    getIndexData(indexName, currentDate) {
-      axios
-        .get(`/api/index?date=${currentDate}&indexName=${indexName}`)
-        .then((response) => (this.pieChartData = response.data))
+    handleClick(index, date, marketProxy) {
+      this.getTable(index, date, marketProxy)
+      this.getIndex(index, date)
+      this.getSector(index, date)
     },
-    getTableData(indexName, currentDate) {
-      axios
-        .get(
-          `/api/synthethic-table?date=${currentDate}&indexName=${indexName}&indexCode=J250`,
-        )
-        .then((response) => (this.allData = response.data))
-        .then(
-          (allData) => (this.data = allData.filter((data) => !!data.weights)),
-        )
+    goToShare(share, date) {
+      console.log(share)
+      this.getShareTimeSeries(share)
+      this.getShareTableInfo(share, date)
+      this.findAndUpdateShare(share)
+      this.updateShareDate(date)
+      this.getShareDates(share)
+      this.goToSharePage()
     },
-    handleClick(indexName, currentDate) {
-      this.selectedIndex = this.currentIndex
-      this.getTableData(indexName, currentDate)
-      this.getIndexData(indexName, currentDate)
+    findAndUpdateShare(share) {
+      for (let item of this.shares) {
+        console.log(item)
+        if (item.alpha === share) {
+          this.updateShare(item)
+        }
+      }
     },
+  },
+  beforeUnmount() {
+    this.resetState()
   },
 }
 </script>
@@ -184,6 +224,16 @@ export default {
 
     .portfolio-statistics-container {
       margin: 4rem 0;
+    }
+
+    .pie-charts-container {
+      @media (max-width: 800px) {
+        width: 80vw;
+      }
+
+      flex-wrap: wrap;
+      display: flex;
+      justify-content: center;
     }
 
     .download-buttons-container {

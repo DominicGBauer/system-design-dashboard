@@ -23,6 +23,9 @@ export default {
 
 <style lang="scss" scoped>
 .container {
+  @media (max-width: 800px) {
+    margin: 2rem 10%;
+  }
   margin: 2rem 20%;
 }
 </style>

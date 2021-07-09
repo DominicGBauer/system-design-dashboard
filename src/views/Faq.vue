@@ -133,6 +133,10 @@ export default {
 .container {
   margin: 2rem 20%;
 
+  @media (max-width: 800px) {
+    margin: 2rem 10%;
+  }
+
   h1 {
     margin-bottom: 3rem;
   }

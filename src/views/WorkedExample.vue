@@ -11,45 +11,47 @@
         <caption>
           Table 1: Portfolio Summary
         </caption>
+        <thead>
+          <tr>
+            <th scope="col">Share</th>
+            <th scope="col">Sector</th>
+            <th scope="col">Proportion</th>
+            <th scope="col">R&sup2;</th>
+            <th scope="col">Beta</th>
+            <th scope="col">Std Dev</th>
+          </tr>
+        </thead>
         <tr>
-          <th>Share</th>
-          <th>Sector</th>
-          <th>Proportion</th>
-          <th>R&sup2;</th>
-          <th>Beta</th>
-          <th>Std Dev</th>
+          <td scope="row" data-label="Share">AGL</td>
+          <td data-label="Sector">Mining</td>
+          <td data-label="Proportion">40%</td>
+          <td data-label="R&sup2;">70.43%</td>
+          <td data-label="Beta">1.72</td>
+          <td data-label="Std Dev">38.02%</td>
         </tr>
         <tr>
-          <td>AGL</td>
-          <td>Mining</td>
-          <td>40%</td>
-          <td>70.43%</td>
-          <td>1.72</td>
-          <td>38.02%</td>
+          <td scope="row" data-label="Share">WHL</td>
+          <td data-label="Sector">General Retailers</td>
+          <td data-label="Proportion">10%</td>
+          <td data-label="R&sup2;">20.84%</td>
+          <td data-label="Beta">0.67</td>
+          <td data-label="Std Dev">27.06%</td>
         </tr>
         <tr>
-          <td>WHL</td>
-          <td>General Retailers</td>
-          <td>10%</td>
-          <td>20.84%</td>
-          <td>0.67</td>
-          <td>27.06%</td>
+          <td scope="row" data-label="Share">APN</td>
+          <td data-label="Sector">Pharmaceuticals</td>
+          <td data-label="Proportion">20%</td>
+          <td data-label="R&sup2;">7.07%</td>
+          <td data-label="Beta">0.44</td>
+          <td data-label="Std Dev">30.23%</td>
         </tr>
         <tr>
-          <td>APN</td>
-          <td>Pharmaceuticals</td>
-          <td>20%</td>
-          <td>7.07%</td>
-          <td>0.44</td>
-          <td>30.23%</td>
-        </tr>
-        <tr>
-          <td>LBT</td>
-          <td>Life Insurance</td>
-          <td>30%</td>
-          <td>7.75%</td>
-          <td>0.29</td>
-          <td>19.19%</td>
+          <td scope="row" data-label="Share">LBT</td>
+          <td data-label="Sector">Life Insurance</td>
+          <td data-label="Proportion">30%</td>
+          <td data-label="R&sup2;">7.75%</td>
+          <td data-label="Beta">0.29</td>
+          <td data-label="Std Dev">19.19%</td>
         </tr>
       </table>
     </div>
@@ -133,19 +135,21 @@
       above expressions as follows:"
     />
     <div class="table-container">
-      <table>
+      <table v-if="!isMobile()">
         <caption>
           Table 2: Individual Share Risk Decomposition
         </caption>
+        <thead>
+          <tr>
+            <th scope="col">Share</th>
+            <th scope="col">AGL</th>
+            <th scope="col">WHL</th>
+            <th scope="col">APN</th>
+            <th scope="col">LBT</th>
+          </tr>
+        </thead>
         <tr>
-          <th>Share</th>
-          <th>AGL</th>
-          <th>WHL</th>
-          <th>APN</th>
-          <th>LBT</th>
-        </tr>
-        <tr>
-          <td>R&sup2;</td>
+          <td data-label>R&sup2;</td>
           <td>70.43%</td>
           <td>20.84%</td>
           <td>7.07%</td>
@@ -180,6 +184,53 @@
           <td>24.07%</td>
           <td>29.15%</td>
           <td>18.43%</td>
+        </tr>
+      </table>
+      <table v-else>
+        <caption>
+          Table 2: Individual Share Risk Decomposition
+        </caption>
+        <thead>
+          <tr>
+            <th scope="col">Share</th>
+            <th scope="col">R&sup2;</th>
+            <th scope="col">1 - R&sup2;</th>
+            <th scope="col">Total Risk</th>
+            <th scope="col">Systematic Risk</th>
+            <th scope="col">Specific Risk</th>
+          </tr>
+        </thead>
+        <tr>
+          <td scope="row" data-label="Share">AGL</td>
+          <td data-label="R&sup2;">70.43%</td>
+          <td data-label="1 - R&sup2;">29.57%</td>
+          <td data-label="Total Risk">38.02%</td>
+          <td data-label="Systematic Risk">31.91%</td>
+          <td data-label="Specific Risk">20.67%</td>
+        </tr>
+        <tr>
+          <td scope="row" data-label="Share">WHL</td>
+          <td data-label="R&sup2;">20.84%</td>
+          <td data-label="1 - R&sup2;">79.16%</td>
+          <td data-label="Total Risk">27.06%</td>
+          <td data-label="Systematic Risk">12.35%</td>
+          <td data-label="Specific Risk">24.07%</td>
+        </tr>
+        <tr>
+          <td scope="row" data-label="Share">APN</td>
+          <td data-label="R&sup2;">7.07%</td>
+          <td data-label="1 - R&sup2;">92.93%</td>
+          <td data-label="Total Risk">30.23%</td>
+          <td data-label="Systematic Risk">8.04%</td>
+          <td data-label="Specific Risk">29.15%</td>
+        </tr>
+        <tr>
+          <td scope="row" data-label="Share">LBT</td>
+          <td data-label="R&sup2;">7.75%</td>
+          <td data-label="1 - R&sup2;">92.25%</td>
+          <td data-label="Total Risk">19.19%</td>
+          <td data-label="Systematic Risk">5.34%</td>
+          <td data-label="Specific Risk">18.43%</td>
         </tr>
       </table>
     </div>
@@ -372,11 +423,27 @@ export default {
   components: {
     Paragraph,
   },
+  methods: {
+    created() {
+      this.isMobile()
+    },
+    isMobile() {
+      if (screen.width <= 760) {
+        return true
+      } else {
+        return false
+      }
+    },
+  },
 }
 </script>
 
 <style lang="scss" scoped>
 .container {
+  @media (max-width: 800px) {
+    margin: 2rem 10%;
+  }
+
   margin: 2rem 20%;
 
   h1 {
@@ -399,31 +466,13 @@ export default {
   }
 
   .table-container {
+    @media (max-width: 800px) {
+      margin: 2rem 0;
+    }
+
     display: flex;
     justify-content: center;
     margin: 3rem;
-  }
-
-  table {
-    border-collapse: collapse;
-  }
-
-  table,
-  tr,
-  td,
-  th {
-    border: 1px solid black;
-  }
-
-  td,
-  th {
-    padding: 6px;
-  }
-
-  caption {
-    padding: 16px;
-    font-weight: bold;
-    caption-side: bottom;
   }
 }
 </style>

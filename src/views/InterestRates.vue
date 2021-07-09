@@ -2,27 +2,37 @@
   <div class="page-container">
     <h1>Interest Rates</h1>
     <div class="select-container">
-      <p><strong>Select a Tenor</strong></p>
+      <p>
+        <strong>Select a <span v-if="data[0]">new</span> tenor</strong>
+      </p>
       <VueMultiselect
         v-model="currentTenor"
         :options="TENORS"
         :searchable="false"
         :allow-empty="false"
+        placeholder="Select a tenor"
       >
       </VueMultiselect>
 
-      <p><strong>Select a Bond Curve</strong></p>
+      <p>
+        <strong>Select a <span v-if="data[0]"></span> bond curve</strong>
+      </p>
       <VueMultiselect
         v-model="currentBondCurve"
         :options="BOND_CURVES"
         :searchable="false"
         :allow-empty="false"
+        placeholder="Select a bond curve"
       >
       </VueMultiselect>
 
       <div class="button-container">
-        <button @click="handleClick(currentBondCurve, currentTenor)">
-          Display Graph
+        <button
+          @click="handleClick(currentBondCurve, currentTenor)"
+          :disabled="!currentBondCurve || !currentTenor"
+        >
+          <span v-if="!data[0]">Display Graph</span>
+          <span v-else>Update Graph</span>
         </button>
       </div>
     </div>

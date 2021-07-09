@@ -10,6 +10,8 @@ export const INDEX_NAMES = [
   'PCAP',
 ]
 
+export const HIGHLIGHTS_INDEX_CODES = ['J200', 'J203', 'J210', 'J212', 'J213']
+
 export const INDEX_CODES = ['J200', 'J203', 'J250', 'J257', 'J258']
 
 export const BOND_CURVES = [

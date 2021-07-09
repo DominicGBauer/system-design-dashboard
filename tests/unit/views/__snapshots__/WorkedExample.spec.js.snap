@@ -19,104 +19,170 @@ exports[`WorkedExample.vue renders the Worked Example and it looks the same 1`] 
       <caption>
          Table 1: Portfolio Summary 
       </caption>
-      <tbody>
+      <thead>
         <tr>
-          <th>
+          <th
+            scope="col"
+          >
             Share
           </th>
-          <th>
+          <th
+            scope="col"
+          >
             Sector
           </th>
-          <th>
+          <th
+            scope="col"
+          >
             Proportion
           </th>
-          <th>
+          <th
+            scope="col"
+          >
             R²
           </th>
-          <th>
+          <th
+            scope="col"
+          >
             Beta
           </th>
-          <th>
+          <th
+            scope="col"
+          >
             Std Dev
           </th>
         </tr>
+      </thead>
+      <tbody>
         <tr>
-          <td>
+          <td
+            data-label="Share"
+            scope="row"
+          >
             AGL
           </td>
-          <td>
+          <td
+            data-label="Sector"
+          >
             Mining
           </td>
-          <td>
+          <td
+            data-label="Proportion"
+          >
             40%
           </td>
-          <td>
+          <td
+            data-label="R²"
+          >
             70.43%
           </td>
-          <td>
+          <td
+            data-label="Beta"
+          >
             1.72
           </td>
-          <td>
+          <td
+            data-label="Std Dev"
+          >
             38.02%
           </td>
         </tr>
         <tr>
-          <td>
+          <td
+            data-label="Share"
+            scope="row"
+          >
             WHL
           </td>
-          <td>
+          <td
+            data-label="Sector"
+          >
             General Retailers
           </td>
-          <td>
+          <td
+            data-label="Proportion"
+          >
             10%
           </td>
-          <td>
+          <td
+            data-label="R²"
+          >
             20.84%
           </td>
-          <td>
+          <td
+            data-label="Beta"
+          >
             0.67
           </td>
-          <td>
+          <td
+            data-label="Std Dev"
+          >
             27.06%
           </td>
         </tr>
         <tr>
-          <td>
+          <td
+            data-label="Share"
+            scope="row"
+          >
             APN
           </td>
-          <td>
+          <td
+            data-label="Sector"
+          >
             Pharmaceuticals
           </td>
-          <td>
+          <td
+            data-label="Proportion"
+          >
             20%
           </td>
-          <td>
+          <td
+            data-label="R²"
+          >
             7.07%
           </td>
-          <td>
+          <td
+            data-label="Beta"
+          >
             0.44
           </td>
-          <td>
+          <td
+            data-label="Std Dev"
+          >
             30.23%
           </td>
         </tr>
         <tr>
-          <td>
+          <td
+            data-label="Share"
+            scope="row"
+          >
             LBT
           </td>
-          <td>
+          <td
+            data-label="Sector"
+          >
             Life Insurance
           </td>
-          <td>
+          <td
+            data-label="Proportion"
+          >
             30%
           </td>
-          <td>
+          <td
+            data-label="R²"
+          >
             7.75%
           </td>
-          <td>
+          <td
+            data-label="Beta"
+          >
             0.29
           </td>
-          <td>
+          <td
+            data-label="Std Dev"
+          >
             19.19%
           </td>
         </tr>
@@ -233,110 +299,172 @@ exports[`WorkedExample.vue renders the Worked Example and it looks the same 1`] 
       <caption>
          Table 2: Individual Share Risk Decomposition 
       </caption>
-      <tbody>
+      <thead>
         <tr>
-          <th>
+          <th
+            scope="col"
+          >
             Share
           </th>
-          <th>
-            AGL
-          </th>
-          <th>
-            WHL
-          </th>
-          <th>
-            APN
-          </th>
-          <th>
-            LBT
-          </th>
-        </tr>
-        <tr>
-          <td>
+          <th
+            scope="col"
+          >
             R²
-          </td>
-          <td>
-            70.43%
-          </td>
-          <td>
-            20.84%
-          </td>
-          <td>
-            7.07%
-          </td>
-          <td>
-            7.75%
-          </td>
-        </tr>
-        <tr>
-          <td>
+          </th>
+          <th
+            scope="col"
+          >
             1 - R²
-          </td>
-          <td>
-            29.57%
-          </td>
-          <td>
-            79.16%
-          </td>
-          <td>
-            92.93%
-          </td>
-          <td>
-            92.25%
-          </td>
-        </tr>
-        <tr>
-          <td>
+          </th>
+          <th
+            scope="col"
+          >
             Total Risk
-          </td>
-          <td>
-            38.02%
-          </td>
-          <td>
-            27.06%
-          </td>
-          <td>
-            30.23%
-          </td>
-          <td>
-            19.19%
-          </td>
-        </tr>
-        <tr>
-          <td>
+          </th>
+          <th
+            scope="col"
+          >
             Systematic Risk
-          </td>
-          <td>
-            31.91%
-          </td>
-          <td>
-            12.35%
-          </td>
-          <td>
-            8.04%
-          </td>
-          <td>
-            5.34%
-          </td>
-        </tr>
-        <tr>
-          <td>
+          </th>
+          <th
+            scope="col"
+          >
             Specific Risk
-          </td>
-          <td>
-            20.67%
-          </td>
-          <td>
-            24.07%
-          </td>
-          <td>
-            29.15%
-          </td>
-          <td>
-            18.43%
-          </td>
+          </th>
         </tr>
-      </tbody>
+      </thead>
+      <tr>
+        <td
+          data-label="Share"
+          scope="row"
+        >
+          AGL
+        </td>
+        <td
+          data-label="R²"
+        >
+          70.43%
+        </td>
+        <td
+          data-label="1 - R²"
+        >
+          29.57%
+        </td>
+        <td
+          data-label="Total Risk"
+        >
+          38.02%
+        </td>
+        <td
+          data-label="Systematic Risk"
+        >
+          31.91%
+        </td>
+        <td
+          data-label="Specific Risk"
+        >
+          20.67%
+        </td>
+      </tr>
+      <tr>
+        <td
+          data-label="Share"
+          scope="row"
+        >
+          WHL
+        </td>
+        <td
+          data-label="R²"
+        >
+          20.84%
+        </td>
+        <td
+          data-label="1 - R²"
+        >
+          79.16%
+        </td>
+        <td
+          data-label="Total Risk"
+        >
+          27.06%
+        </td>
+        <td
+          data-label="Systematic Risk"
+        >
+          12.35%
+        </td>
+        <td
+          data-label="Specific Risk"
+        >
+          24.07%
+        </td>
+      </tr>
+      <tr>
+        <td
+          data-label="Share"
+          scope="row"
+        >
+          APN
+        </td>
+        <td
+          data-label="R²"
+        >
+          7.07%
+        </td>
+        <td
+          data-label="1 - R²"
+        >
+          92.93%
+        </td>
+        <td
+          data-label="Total Risk"
+        >
+          30.23%
+        </td>
+        <td
+          data-label="Systematic Risk"
+        >
+          8.04%
+        </td>
+        <td
+          data-label="Specific Risk"
+        >
+          29.15%
+        </td>
+      </tr>
+      <tr>
+        <td
+          data-label="Share"
+          scope="row"
+        >
+          LBT
+        </td>
+        <td
+          data-label="R²"
+        >
+          7.75%
+        </td>
+        <td
+          data-label="1 - R²"
+        >
+          92.25%
+        </td>
+        <td
+          data-label="Total Risk"
+        >
+          19.19%
+        </td>
+        <td
+          data-label="Systematic Risk"
+        >
+          5.34%
+        </td>
+        <td
+          data-label="Specific Risk"
+        >
+          18.43%
+        </td>
+      </tr>
     </table>
   </div>
   <paragraph-stub

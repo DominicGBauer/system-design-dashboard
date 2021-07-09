@@ -4,7 +4,7 @@
       <h1>AIFMRM Equity Risk Service Dashboard</h1>
       <h2>The Equity Risk Service at Your Fingertips</h2>
     </div>
-    <img src="../assets/main-page-image.svg" />
+    <img src="@/assets/main-page-image.svg" />
   </div>
 </template>
 
@@ -16,16 +16,21 @@ export default {
 
 <style lang="scss" scoped>
 .heading-container {
-  @media (max-width: 800px) {
-    flex-wrap: wrap-reverse;
+  @media (max-width: 1200px) {
+    flex-wrap: wrap;
   }
   display: flex;
   align-items: center;
+  justify-content: center;
 
   margin: 2rem 10%;
 
   img {
     max-width: 800px;
+
+    @media (max-width: 1400px) {
+      max-width: 600px;
+    }
 
     @media (max-width: 800px) {
       max-width: 100%;
@@ -36,6 +41,10 @@ export default {
     margin: 40px 0;
     font-size: 58px;
     font-weight: 900;
+
+    @media (max-width: 800px) {
+      font-size: 42px;
+    }
   }
 
   h2 {

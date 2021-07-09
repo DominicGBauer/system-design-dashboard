@@ -3,10 +3,11 @@
     <template v-if="isMobile()">
       <div class="mobile">
         <router-link to="/">
-          <img src="../assets/aifmrm_logo.svg" />
+          <img src="@/assets/aifmrm_logo.svg" />
         </router-link>
-        <Slide right closeOnNavigation width="400">
+        <Slide right closeOnNavigation width="300">
           <router-link to="/" class="link"> Home </router-link>
+          <router-link to="/sectors" class="link">Sectors</router-link>
           <router-link to="/shares" class="link">Shares</router-link>
           <router-link to="/interest-rates" class="link"
             >Interest Rates</router-link
@@ -19,12 +20,15 @@
       </div>
     </template>
 
-    <template v-if="!isMobile()">
+    <template v-else>
       <div class="nav-container">
         <router-link to="/">
-          <img src="../assets/aifmrm_logo.svg" />
+          <img src="@/assets/aifmrm_logo.svg" />
         </router-link>
         <ul class="links-container">
+          <h6>
+            <router-link to="/sectors">Sectors</router-link>
+          </h6>
           <h6>
             <router-link to="/shares">Shares</router-link>
           </h6>

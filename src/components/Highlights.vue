@@ -18,7 +18,7 @@
 
 <script>
 import axios from 'axios'
-import { INDEX_CODES } from '../constants'
+import { HIGHLIGHTS_INDEX_CODES } from '../constants'
 
 export default {
   name: 'Highlights',
@@ -31,7 +31,7 @@ export default {
           dates: {},
           changeInQuarter: 0,
           isNegative: null,
-          indexName: 'All Share',
+          indexName: 'ALSI',
         },
         J203: {
           dates: {},
@@ -39,30 +39,33 @@ export default {
           isNegative: null,
           indexName: 'Top 40',
         },
-        J250: {
+        J212: {
           dates: {},
           changeInQuarter: 0,
           isNegative: null,
-          indexName: 'F&I Index',
+          indexName: 'Fini 15',
         },
-        J257: {
+        J213: {
           dates: {},
           changeInQuarter: 0,
           isNegative: null,
-          indexName: 'Industrials',
+          indexName: 'Fndi 30',
         },
-        J258: {
+        J210: {
           dates: {},
           changeInQuarter: 0,
           isNegative: null,
           indexName: 'Resi 10',
         },
       },
-      INDEX_CODES,
+      HIGHLIGHTS_INDEX_CODES,
     }
   },
   mounted() {
-    this.getShareData(Object.values(this.INDEX_CODES), this.daysInQuarter)
+    this.getShareData(
+      Object.values(this.HIGHLIGHTS_INDEX_CODES),
+      this.daysInQuarter,
+    )
   },
   methods: {
     getShareData(indices, daysInQuarter) {

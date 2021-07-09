@@ -4,6 +4,7 @@ import WorkedExample from '../views/WorkedExample.vue'
 import InterestRates from '../views/InterestRates.vue'
 import Faq from '../views/Faq.vue'
 import Shares from '../views/Shares.vue'
+import Sectors from '../views/Sectors.vue'
 
 const routes = [
   {
@@ -30,6 +31,11 @@ const routes = [
     path: '/shares',
     name: 'Shares',
     component: Shares,
+  },
+  {
+    path: '/sectors',
+    name: 'Sectors',
+    component: Sectors,
   },
 ]
 

@@ -15,7 +15,7 @@ const actions = {
 
 const mutations = {
   setDates(state, dates) {
-    state.dates = dates.data
+    state.dates = dates
   },
 }
 

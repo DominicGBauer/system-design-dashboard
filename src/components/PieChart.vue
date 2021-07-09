@@ -96,7 +96,7 @@ export default defineComponent({
 
 <style scoped>
 .pie-chart {
-  height: 550px;
-  width: 550px;
+  height: 500px;
+  width: 500px;
 }
 </style>

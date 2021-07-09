@@ -2,7 +2,7 @@
   <download-csv :data="data" :name="name">
     <button class="download-button">
       {{ text }}
-      <img src="../assets/file_download_white_24dp.svg" />
+      <img src="@/assets/file_download_white_24dp.svg" />
     </button>
   </download-csv>
 </template>
