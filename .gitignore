@@ -2,7 +2,7 @@
 node_modules
 /dist
 .dccache
-
+coverage
 
 # local env files
 .env.local

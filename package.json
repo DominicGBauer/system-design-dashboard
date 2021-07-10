@@ -27,7 +27,8 @@
     "vuex": "^4.0.2"
   },
   "devDependencies": {
-    "@babel/core": "^7.14.3",
+    "@babel/core": "^7.14.6",
+    "@babel/preset-env": "^7.14.7",
     "@commitlint/cli": "^12.1.1",
     "@commitlint/config-conventional": "^12.1.1",
     "@vue/cli-plugin-babel": "~4.5.0",

@@ -6,9 +6,9 @@
 </template>
 
 <script>
-import NavBar from './components/NavBar.vue'
-import Footer from './components/Footer.vue'
-import Highlights from './components/Highlights.vue'
+import NavBar from './components/NavBar/NavBar.vue'
+import Footer from './components/Footer/Footer.vue'
+import Highlights from './components/Highlights/Highlights.vue'
 import { useStore } from 'vuex'
 
 export default {
@@ -18,16 +18,16 @@ export default {
     Footer,
     Highlights,
   },
+  setup() {
+    const store = useStore()
+    store.dispatch('shares/getShares')
+    store.dispatch('dates/getDates')
+    store.dispatch('sectors/getSectors')
+  },
+  created() {
+    this.isMobile()
+  },
   methods: {
-    setup() {
-      const store = useStore()
-      store.dispatch('shares/getShares')
-      store.dispatch('dates/getDates')
-      store.dispatch('sectors/getSectors')
-    },
-    created() {
-      this.isMobile()
-    },
     isMobile() {
       if (screen.width <= 760) {
         return true
