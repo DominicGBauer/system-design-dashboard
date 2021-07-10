@@ -1,13 +1,12 @@
-import newSectors from '../../api/sectors'
+import newSectors from '../../../api/sectors'
 
 const getDefaultState = () => {
   return {
     sector: [],
-    sectors: [],
   }
 }
 
-const state = getDefaultState()
+const state = { ...getDefaultState(), sectors: [] }
 
 const getters = {}
 

@@ -1,4 +1,4 @@
-import newIndices from '../../api/indices'
+import newIndices from '../../../api/indices'
 
 const getDefaultState = () => {
   return {

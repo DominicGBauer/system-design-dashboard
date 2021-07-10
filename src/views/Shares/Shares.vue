@@ -9,7 +9,7 @@
       </p>
       <VueMultiselect
         v-model="share"
-        @select="updateShare"
+        @select="setShare"
         :options="shares"
         :searchable="true"
         label="instrument"
@@ -41,7 +41,7 @@
           :options="dates"
           :searchable="false"
           :allow-empty="false"
-          @select="updateShareDate"
+          @select="setShareDate"
           placeholder="Select a quarter"
         />
         <div class="button-container">
@@ -126,12 +126,12 @@ export default {
       shareTimeSeries: computed(() => store.state.shares.shareTimeSeries),
       shareTableInfo: computed(() => store.state.shares.shareTableInfo),
       shares: computed(() => store.state.shares.shares),
-      dates: computed(() => store.state.shares.dates),
+      dates: computed(() => store.getters['shares/getTransformedDates']),
       date: computed(() => store.state.shares.date),
       share: computed(() => store.state.shares.share),
       getDates: (share) => store.dispatch('shares/getShareDates', { share }),
-      updateShare: (share) => store.dispatch('shares/updateShare', share),
-      updateShareDate: (date) => store.dispatch('shares/updateShareDate', date),
+      setShare: (share) => store.dispatch('shares/setShare', share),
+      setShareDate: (date) => store.dispatch('shares/setShareDate', date),
       getShareTimeSeries: (share) =>
         store.dispatch('shares/getShareTimeSeries', { share }),
       getShareTableInfo: (share, date) =>

@@ -1,10 +1,18 @@
-import newDates from '../../api/dates'
+import newDates from '../../../api/dates'
 
 const state = () => ({
   dates: [],
 })
 
-const getters = {}
+const getters = {
+  transformedDates(state) {
+    let newDates = []
+    for (let quarter of state.dates) {
+      newDates.push(quarter.quarter.slice(0, 8) + '01')
+    }
+    return newDates
+  },
+}
 
 const actions = {
   async getDates({ commit }) {

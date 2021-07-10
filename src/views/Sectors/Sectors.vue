@@ -134,12 +134,12 @@ export default {
       sector: computed(() => store.state.sectors.sector),
       sectors: computed(() => store.state.sectors.sectors),
       shares: computed(() => store.state.shares.shares),
-      dates: computed(() => store.state.dates.dates),
+      dates: computed(() => store.getters['dates/transformedDates']),
       getSector: (sector, date) =>
         store.dispatch('sectors/getSector', { sector, date }),
       resetState: () => store.dispatch('sectors/resetState'),
-      updateShare: (share) => store.dispatch('shares/updateShare', share),
-      updateShareDate: (date) => store.dispatch('shares/updateShareDate', date),
+      setShare: (share) => store.dispatch('shares/setShare', share),
+      setShareDate: (date) => store.dispatch('shares/setShareDate', date),
       getShareTimeSeries: (share) =>
         store.dispatch('shares/getShareTimeSeries', { share }),
       getShareTableInfo: (share, date) =>
@@ -186,18 +186,19 @@ export default {
       return Math.round(beta * 10000) / 10000
     },
     goToShare(share, date) {
+      this.findAndSetShare(share)
       this.getShareTimeSeries(share)
       this.getShareTableInfo(share, date)
-      this.findAndUpdateShare(share)
-      this.updateShareDate(date)
+      this.setShareDate(date)
       this.getShareDates(share)
       this.goToSharePage()
     },
-    findAndUpdateShare(share) {
+    findAndSetShare(share) {
       for (let item of this.shares) {
         if (item.alpha === share) {
-          this.updateShare(item)
+          this.setShare(item)
         }
+        console.log('no share found')
       }
     },
     handleClick(share, date) {

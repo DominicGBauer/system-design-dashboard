@@ -1,19 +1,27 @@
-import newShares from '../../api/shares'
+import newShares from '../../../api/shares'
+import * as utils from '../utils'
 
 const getDefaultState = () => {
   return {
     shareTimeSeries: [],
     shareTableInfo: [],
-    shares: [],
     dates: [],
     date: [],
     share: [],
   }
 }
 
-const state = getDefaultState()
+const state = { ...getDefaultState(), shares: [] }
 
-const getters = {}
+const getters = {
+  getTransformedDates(state) {
+    let newDates = []
+    for (let quarter of state.dates) {
+      newDates.push(quarter.quarter.slice(0, 8) + '01')
+    }
+    return newDates
+  },
+}
 
 const actions = {
   async getShareTableInfo({ commit }, { share, date }) {
@@ -32,31 +40,31 @@ const actions = {
     const dates = await newShares.getShareDates(share)
     commit('setShareDates', dates)
   },
+  setShareDate({ commit }, date) {
+    commit('setShareDate', date)
+  },
+  setShare({ commit }, share) {
+    commit('setShare', share)
+  },
   resetState({ commit }) {
     commit('resetState')
-  },
-  updateShareDate({ commit }, date) {
-    commit('updateShareDate', date)
-  },
-  updateShare({ commit }, share) {
-    commit('updateShare', share)
   },
 }
 
 const mutations = {
   setShareTableInfo(state, shareTableInfo) {
-    state.shareTableInfo = shareTableInfo
+    state.shareTableInfo = utils.transformTimeSeries(shareTableInfo)
   },
   setShareTimeSeries(state, shareTimeSeries) {
-    state.shareTimeSeries = shareTimeSeries
+    state.shareTimeSeries = utils.transformTimeSeries(shareTimeSeries)
   },
   setShares(state, shares) {
     state.shares = shares
   },
-  updateShare(state, share) {
+  setShare(state, share) {
     state.share = share
   },
-  updateShareDate(state, date) {
+  setShareDate(state, date) {
     state.date = date
   },
   setShareDates(state, dates) {
