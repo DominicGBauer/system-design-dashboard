@@ -17,9 +17,15 @@
         placeholder="Select a share"
       />
       <div class="button-container">
-        <button @click="handleShareClick(share.alpha)" :disabled="!share.alpha">
-          <span v-if="!shareTimeSeries[0]">Display Graph</span>
-          <span v-else>Update Graph</span>
+        <button
+          v-if="!shareTimeSeries[0]"
+          @click="handleDisplayClick(share.alpha)"
+          :disabled="!share.alpha"
+        >
+          Display Graph
+        </button>
+        <button v-else @click="handleUpdateClick(share.alpha, date)">
+          Update Graph
         </button>
       </div>
     </div>
@@ -145,9 +151,14 @@ export default {
     }
   },
   methods: {
-    handleShareClick(share) {
+    handleDisplayClick(share) {
       this.getShareTimeSeries(share)
       this.getDates(share)
+    },
+    handleUpdateClick(share, date) {
+      this.getShareTimeSeries(share)
+      this.getDates(share)
+      this.getShareTableInfo(share, date)
     },
     handleDateClick(share, date) {
       this.getShareTableInfo(share, date)
