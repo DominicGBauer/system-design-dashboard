@@ -1,6 +1,6 @@
 <template>
-  <nav :class="{ mobile: isMobile() }">
-    <template v-if="isMobile()">
+  <nav :class="{ mobile: isMobile }">
+    <template v-if="isMobile">
       <div class="mobile">
         <router-link to="/">
           <img src="@/assets/aifmrm_logo.svg" />
@@ -48,23 +48,21 @@
 </template>
 
 <script>
+import { computed } from '@vue/runtime-core'
 import { Slide } from 'vue3-burger-menu'
+import { useStore } from 'vuex'
 export default {
   name: 'NavBar',
   components: {
     Slide,
   },
-  created() {
-    this.isMobile()
-  },
-  methods: {
-    isMobile() {
-      if (screen.width <= 760) {
-        return true
-      } else {
-        return false
-      }
-    },
+  setup() {
+    const store = useStore()
+
+    store.dispatch('mobile/setIsMobile')
+    return {
+      isMobile: computed(() => store.state.mobile.isMobile),
+    }
   },
 }
 </script>

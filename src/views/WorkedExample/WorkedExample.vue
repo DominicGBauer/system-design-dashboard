@@ -137,7 +137,7 @@
     </p>
 
     <div class="table-container">
-      <table v-if="!isMobile()">
+      <table v-if="!isMobile">
         <caption>
           Table 2: Individual Share Risk Decomposition
         </caption>
@@ -418,19 +418,16 @@
 </template>
 
 <script>
+import { computed } from '@vue/runtime-core'
+import { useStore } from 'vuex'
 export default {
   name: 'WorkedExample',
-  methods: {
-    created() {
-      this.isMobile()
-    },
-    isMobile() {
-      if (screen.width <= 760) {
-        return true
-      } else {
-        return false
-      }
-    },
+  setup() {
+    const store = useStore()
+    store.dispatch('mobile/setIsMobile')
+    return {
+      isMobile: computed(() => store.state.mobile.isMobile),
+    }
   },
 }
 </script>

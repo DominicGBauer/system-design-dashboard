@@ -1,6 +1,6 @@
 <template>
   <NavBar />
-  <Highlights v-if="!isMobile()" />
+  <Highlights v-if="!isMobile" />
   <router-view />
   <Footer />
 </template>
@@ -10,6 +10,7 @@ import NavBar from './components/NavBar/NavBar.vue'
 import Footer from './components/Footer/Footer.vue'
 import Highlights from './components/Highlights/Highlights.vue'
 import { useStore } from 'vuex'
+import { computed } from '@vue/runtime-core'
 
 export default {
   name: 'App',
@@ -23,18 +24,10 @@ export default {
     store.dispatch('shares/getShares')
     store.dispatch('dates/getDates')
     store.dispatch('sectors/getSectors')
-  },
-  created() {
-    this.isMobile()
-  },
-  methods: {
-    isMobile() {
-      if (screen.width <= 760) {
-        return true
-      } else {
-        return false
-      }
-    },
+    store.dispatch('mobile/setIsMobile')
+    return {
+      isMobile: computed(() => store.state.mobile.isMobile),
+    }
   },
 }
 </script>

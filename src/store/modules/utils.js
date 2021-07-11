@@ -12,3 +12,11 @@ export const transformDates = (dates) => {
   }
   return newDates
 }
+
+export const isMobile = () => {
+  if (screen.width <= 760) {
+    return true
+  } else {
+    return false
+  }
+}
