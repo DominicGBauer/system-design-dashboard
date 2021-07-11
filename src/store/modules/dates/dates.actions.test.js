@@ -1,6 +1,6 @@
 import SUT from './dates'
 
-let url = '/api/quarters'
+let url = ''
 let body = []
 jest.mock('axios', () => ({
   get: (_url, _body) => {
