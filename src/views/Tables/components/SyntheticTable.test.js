@@ -1,5 +1,5 @@
 import { mount } from '@vue/test-utils'
-import SyntheticTable from '@/components/SyntheticTable/SyntheticTable.vue'
+import SyntheticTable from '@/views/Tables/components/SyntheticTable.vue'
 
 describe('SyntheticTable.vue', () => {
   it('it shows the text describing the table', () => {

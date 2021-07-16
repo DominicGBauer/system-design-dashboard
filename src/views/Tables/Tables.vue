@@ -46,6 +46,10 @@
 
     <template v-if="portfolioStatistics && table[0]">
       <div class="output-container">
+        <div class="pie-charts-container">
+          <PieChart :indexName="indexName" :data="index" centeringLong="50%" />
+          <PieChart :indexName="indexName" :data="sector" centeringLong="50%" />
+        </div>
         <div class="portfolio-statistics-container">
           <p>
             <strong>Portfolio Beta:</strong>
@@ -63,10 +67,6 @@
             <strong>Portfolio Variance:</strong>
             {{ portfolioStatistics.portfolio_variance.toFixed(2) }}
           </p>
-        </div>
-        <div class="pie-charts-container">
-          <PieChart :indexName="indexName" :data="index" centeringLong="50%" />
-          <PieChart :indexName="indexName" :data="sector" centeringLong="50%" />
         </div>
         <SyntheticTable
           :data="table"
@@ -106,10 +106,10 @@ import { computed } from '@vue/runtime-core'
 import { useStore } from 'vuex'
 import { useRouter } from 'vue-router'
 import VueMultiselect from 'vue-multiselect'
-import PieChart from '../../components/PieChart/PieChart.vue'
-import ExcelDownloadButton from '../../components/ExcelDownloadButton/ExcelDownloadButton.vue'
-import { INDEX_NAMES, INDEX_CODES } from '../../constants'
-import SyntheticTable from '../../components/SyntheticTable/SyntheticTable.vue'
+import PieChart from '@/components/PieChart/PieChart.vue'
+import ExcelDownloadButton from '@/components/ExcelDownloadButton/ExcelDownloadButton.vue'
+import { INDEX_NAMES, INDEX_CODES } from '@/constants'
+import SyntheticTable from './components/SyntheticTable.vue'
 
 export default {
   name: 'Tables',
@@ -170,7 +170,6 @@ export default {
       this.getSector(index, date)
     },
     goToShare(share, date) {
-      console.log(share)
       this.getShareTimeSeries(share)
       this.getShareTableInfo(share, date)
       this.findAndSetShare(share)
@@ -180,7 +179,6 @@ export default {
     },
     findAndSetShare(share) {
       for (let item of this.shares) {
-        console.log(item)
         if (item.alpha === share) {
           this.setShare(item)
         }
@@ -223,14 +221,16 @@ export default {
     justify-content: center;
 
     .portfolio-statistics-container {
-      margin: 4rem 0;
+      margin-bottom: 4rem;
     }
 
     .pie-charts-container {
       @media (max-width: 800px) {
         width: 80vw;
+        margin: 0;
       }
 
+      margin-top: 4rem;
       flex-wrap: wrap;
       display: flex;
       justify-content: center;

@@ -14,20 +14,23 @@
     </caption>
     <thead>
       <tr>
-        <th scope="col">Instrument</th>
         <th scope="col">Code</th>
         <th scope="col">Beta</th>
         <th scope="col">Market Volatility</th>
         <th scope="col">Weights</th>
+        <th scope="col">Beta Contribution</th>
+        <th scope="col">Volatility Contribution</th>
       </tr>
     </thead>
 
     <tbody>
       <tr v-for="entry in data" :key="entry">
-        <td scope="row" data-label="Instrument">
-          {{ entry.instrument }}
-        </td>
-        <td data-label="Code" @click="goToShare(entry.code)" class="code">
+        <td
+          scope="row"
+          data-label="Code"
+          @click="goToShare(entry.code)"
+          class="code"
+        >
           <span>
             {{ entry.code }}
           </span>
@@ -42,12 +45,26 @@
         <td data-label="Market Volatility">
           {{
             entry.market_volatility
-              ? entry.market_volatility.toFixed(4) * 100
+              ? Math.round(entry.market_volatility * 10000) / 100
               : 0
           }}%
         </td>
         <td data-label="Weights">
-          {{ entry.weights ? entry.weights.toFixed(2) : 0 }}%
+          {{ entry.weights ? Math.round(entry.weights * 10000) / 100 : 0 }}%
+        </td>
+        <td data-label="Beta Contribution">
+          {{
+            entry.weights && entry.beta
+              ? (entry.weights * entry.beta).toFixed(2)
+              : 0
+          }}
+        </td>
+        <td data-label="Volatility Contribution">
+          {{
+            entry.weights && entry.market_volatility
+              ? (entry.weights * entry.market_volatility).toFixed(2)
+              : 0
+          }}
         </td>
       </tr>
     </tbody>
