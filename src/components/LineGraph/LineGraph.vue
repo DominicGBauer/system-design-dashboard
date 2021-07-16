@@ -25,6 +25,11 @@ export default defineComponent({
   props: {
     title: String,
     data: {},
+    lineGraphType: {
+      type: String,
+      default: 'time',
+    },
+    xAxisData: {},
   },
   setup(props) {
     const option = ref({
@@ -35,24 +40,26 @@ export default defineComponent({
       tooltip: {
         trigger: 'axis',
         formatter: function (params) {
-          params = params[0]
-          var date = new Date(params.name)
-          return (
-            date.getDate() +
-            '/' +
-            (date.getMonth() + 1) +
-            '/' +
-            date.getFullYear() +
-            ' : ' +
-            params.value[1]
-          )
+          if (props.lineGraphType === 'time') {
+            params = params[0]
+            var date = new Date(params.name)
+            return (
+              date.getDate() +
+              '/' +
+              (date.getMonth() + 1) +
+              '/' +
+              date.getFullYear() +
+              ' : ' +
+              params.value[1]
+            )
+          }
         },
         axisPointer: {
           animation: false,
         },
       },
       xAxis: {
-        type: 'time',
+        type: props.lineGraphType,
         splitLine: {
           show: false,
         },
@@ -86,6 +93,17 @@ export default defineComponent({
 
     watchEffect(
       () => (option.value.title = { text: props.title, left: 'center' }),
+    )
+
+    watchEffect(
+      () =>
+        (option.value.xAxis = {
+          type: props.lineGraphType,
+          data: props.xAxisData,
+          splitLine: {
+            show: false,
+          },
+        }),
     )
 
     return { option }

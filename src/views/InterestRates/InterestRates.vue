@@ -3,93 +3,47 @@
     <h1>Interest Rates</h1>
     <div class="select-container">
       <p>
-        <strong>Select a <span v-if="data[0]">new</span> tenor</strong>
+        <strong>Select a<span v-if="data[0]"> new</span> type of graph</strong>
       </p>
       <VueMultiselect
-        v-model="currentTenor"
-        :options="TENORS"
+        v-model="currentGraph"
+        :options="graphs"
         :searchable="false"
         :allow-empty="false"
-        placeholder="Select a tenor"
+        placeholder="Select a type of graph"
       >
       </VueMultiselect>
-
-      <p>
-        <strong>Select a <span v-if="data[0]"></span> bond curve</strong>
-      </p>
-      <VueMultiselect
-        v-model="currentBondCurve"
-        :options="BOND_CURVES"
-        :searchable="false"
-        :allow-empty="false"
-        placeholder="Select a bond curve"
-      >
-      </VueMultiselect>
-
-      <div class="button-container">
-        <button
-          @click="handleClick(currentBondCurve, currentTenor)"
-          :disabled="!currentBondCurve || !currentTenor"
-        >
-          <span v-if="!data[0]">Display Graph</span>
-          <span v-else>Update Graph</span>
-        </button>
-      </div>
     </div>
+    <template v-if="currentGraph === 'Time Series'">
+      <TimeSeries />
+    </template>
+    <template v-if="currentGraph === 'Yield Curve'">
+      <YieldCurve />
+    </template>
   </div>
-
-  <Loader :isLoading="isLoading" />
-
-  <template v-if="data[0] && !isLoading">
-    <div class="graph-container">
-      <LineGraph :data="data" :title="currentTenor" />
-    </div>
-  </template>
 </template>
 
 <script>
-import axios from 'axios'
 import VueMultiselect from 'vue-multiselect'
-import LineGraph from '../../components/LineGraph/LineGraph.vue'
-import Loader from '../../components/Loader/Loader.vue'
-import { TENORS, BOND_CURVES } from '../../constants'
+import TimeSeries from '@/views/InterestRates/components/TimeSeries.vue'
+import YieldCurve from '@/views/InterestRates/components/YieldCurve.vue'
+import { TENORS, BOND_CURVES } from '@/constants'
 
 export default {
   name: 'InterestRates',
   components: {
     VueMultiselect,
-    LineGraph,
-    Loader,
+    TimeSeries,
+    YieldCurve,
   },
   data() {
     return {
       data: [],
       BOND_CURVES,
       TENORS,
-      currentTenor: '',
-      currentBondCurve: '',
-      isLoading: false,
+      currentGraph: '',
+      graphs: ['Yield Curve', 'Time Series'],
     }
-  },
-  methods: {
-    getInterestRateData(currentBondCurve, currentTenor) {
-      this.isLoading = true
-      axios
-        .get(
-          `/api/interest_rates?curve="${currentBondCurve}"&tenor=${currentTenor}`,
-        )
-        .then((response) => (this.data = this.transformData(response.data)))
-        .then((this.isLoading = false))
-    },
-    handleClick(currentBondCurve, currentTenor) {
-      this.getInterestRateData(currentBondCurve, currentTenor)
-    },
-    transformData(data) {
-      for (let item of data) {
-        item.value = [item.name, item.value]
-      }
-      return data
-    },
   },
 }
 </script>

@@ -4,7 +4,7 @@
     <div class="select-container">
       <p>
         <strong
-          >Select a <span v-if="shareTimeSeries[0]">new </span>share</strong
+          >Select a<span v-if="shareTimeSeries[0]"> new</span> share</strong
         >
       </p>
       <VueMultiselect
@@ -38,7 +38,7 @@
       <div class="select-container">
         <p>
           <strong>
-            Select a <span v-if="shareTableInfo[0]">new</span> quarter to
+            Select a<span v-if="shareTableInfo[0]"> new</span> quarter to
             display share information for
           </strong>
         </p>
