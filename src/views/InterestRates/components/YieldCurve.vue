@@ -84,7 +84,7 @@ export default {
   },
   computed: {
     xAxisData() {
-      return Object.keys(this.data)
+      return this.data.map((data) => data.name)
     },
   },
   methods: {
