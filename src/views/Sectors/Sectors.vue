@@ -3,7 +3,7 @@
     <h1>Sectors</h1>
     <div class="select-container">
       <p>
-        <strong>Select a <span v-if="sector[0]">new </span>sector</strong>
+        <strong>Select a<span v-if="sector[0]"> new</span> sector</strong>
       </p>
 
       <VueMultiselect
@@ -16,7 +16,7 @@
       />
 
       <p>
-        <strong>Select a <span v-if="sector[0]">new </span>date</strong>
+        <strong>Select a<span v-if="sector[0]"> new</span> date</strong>
       </p>
       <VueMultiselect
         v-model="currentDate"

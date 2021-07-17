@@ -24,6 +24,7 @@ export default {
     store.dispatch('shares/getShares')
     store.dispatch('indices/getIndexTypes')
     store.dispatch('dates/getDates')
+    store.dispatch('interestRates/getDates')
     store.dispatch('sectors/getSectors')
     store.dispatch('mobile/setIsMobile')
     return {
