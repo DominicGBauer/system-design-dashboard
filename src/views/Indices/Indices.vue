@@ -1,22 +1,25 @@
 <template>
   <div class="page-container">
-    <h1>Sectors</h1>
+    <h1>Indices</h1>
     <div class="select-container">
       <p>
-        <strong>Select a <span v-if="sector[0]">new </span>sector</strong>
+        <strong
+          >Select <span v-if="!indices[0]">an</span
+          ><span v-if="indices[0]">a new</span> index type</strong
+        >
       </p>
 
       <VueMultiselect
-        v-model="currentSector"
-        :options="sectors"
+        v-model="currentIndexType"
+        :options="indexTypes"
         :searchable="true"
-        label="sector"
+        label="index_type"
         :allow-empty="false"
-        placeholder="Select a sector"
+        placeholder="Select an index type"
       />
 
       <p>
-        <strong>Select a <span v-if="sector[0]">new </span>date</strong>
+        <strong>Select a <span v-if="indices[0]">new </span>date</strong>
       </p>
       <VueMultiselect
         v-model="currentDate"
@@ -28,19 +31,19 @@
 
       <div class="button-container">
         <button
-          @click="handleClick(currentSector.sector, currentDate)"
-          :disabled="!currentSector || !currentDate"
+          @click="handleClick(currentIndexType.index_type, currentDate)"
+          :disabled="!currentIndexType || !currentDate"
         >
-          <span v-if="!sector[0]">Display Table</span>
+          <span v-if="!indices[0]">Display Table</span>
           <span v-else>Update Table</span>
         </button>
       </div>
     </div>
 
-    <table v-if="sector[0]" class="table-container">
+    <table v-if="indices[0]" class="table-container">
       <caption>
         {{
-          sector[0].sector
+          currentIndexType.index_type
         }}
         Table
         <br />
@@ -53,7 +56,7 @@
       <thead>
         <tr>
           <th scope="col">Code</th>
-          <th scope="col">% Traded</th>
+          <th scope="col">Name</th>
           <th scope="col">Data Points</th>
           <th scope="col">Beta(J200)</th>
           <th scope="col">Beta(J203)</th>
@@ -64,17 +67,11 @@
       </thead>
 
       <tbody>
-        <tr v-for="entry in sector" :key="entry">
-          <td
-            scope="row"
-            data-label="Code"
-            @click="goToShare(entry.instrument, currentDate)"
-            class="code"
-          >
+        <tr v-for="entry in indices" :key="entry">
+          <td scope="row" data-label="Code">
             <span>{{ entry.instrument }} </span>
-            <img src="@/assets/navigate-icon.svg" />
           </td>
-          <td data-label="% Traded">{{ entry.percentage_days_traded }}%</td>
+          <td data-label="Name">{{ entry.index_name }}</td>
           <td data-label="Data Points">{{ entry.data_points }}</td>
           <td
             data-label="Beta(J200)"
@@ -109,8 +106,8 @@
         </tr>
       </tbody>
     </table>
-    <div v-if="isNoShare" class="no-shares-message">
-      Unfortunately no shares fall under this sector for this date selection
+    <div v-if="isNoIndex" class="no-shares-message">
+      Unfortunately no index falls under this index type for this date selection
     </div>
   </div>
 </template>
@@ -119,7 +116,6 @@
 import VueMultiselect from 'vue-multiselect'
 import { useStore } from 'vuex'
 import { computed } from '@vue/runtime-core'
-import { useRouter } from 'vue-router'
 
 export default {
   name: 'Sectors',
@@ -128,39 +124,26 @@ export default {
   },
   setup() {
     const store = useStore()
-    const router = useRouter()
 
     return {
-      sector: computed(() => store.state.sectors.sector),
-      sectors: computed(() => store.state.sectors.sectors),
-      shares: computed(() => store.state.shares.shares),
+      indices: computed(() => store.state.indices.indexTypeIndices),
+      indexTypes: computed(() => store.state.indices.indexTypes),
       dates: computed(() => store.getters['dates/transformedDates']),
-      getSector: (sector, date) =>
-        store.dispatch('sectors/getSector', { sector, date }),
-      resetState: () => store.dispatch('sectors/resetState'),
-      setShare: (share) => store.dispatch('shares/setShare', share),
-      setShareDate: (date) => store.dispatch('shares/setShareDate', date),
-      getShareTimeSeries: (share) =>
-        store.dispatch('shares/getShareTimeSeries', { share }),
-      getShareTableInfo: (share, date) =>
-        store.dispatch('shares/getShareTableInfo', { share, date }),
-      getShareDates: (share) =>
-        store.dispatch('shares/getShareDates', { share }),
-      goToSharePage: () => {
-        router.push('shares#shares')
-      },
+      getIndexTypeIndices: (indexType, date) =>
+        store.dispatch('indices/getIndexTypeIndices', { indexType, date }),
+      resetState: () => store.dispatch('indices/resetState'),
     }
   },
   data() {
     return {
-      currentSector: '',
+      currentIndexType: '',
       currentDate: '',
       isDisplayClicked: false,
     }
   },
   computed: {
-    isNoShare() {
-      return !this.sector[0] && this.isDisplayClicked
+    isNoIndex() {
+      return !this.indices[0] && this.isDisplayClicked
     },
   },
   methods: {
@@ -185,24 +168,9 @@ export default {
     handleBetaEqualToZero(beta) {
       return Math.round(beta * 10000) / 10000
     },
-    goToShare(share, date) {
-      this.findAndSetShare(share)
-      this.getShareTimeSeries(share)
-      this.getShareTableInfo(share, date)
-      this.setShareDate(date)
-      this.getShareDates(share)
-      this.goToSharePage()
-    },
-    findAndSetShare(share) {
-      for (let item of this.shares) {
-        if (item.alpha === share) {
-          this.setShare(item)
-        }
-      }
-    },
-    handleClick(share, date) {
+    handleClick(indexType, date) {
       this.isDisplayClicked = true
-      this.getSector(share, date)
+      this.getIndexTypeIndices(indexType, date)
     },
   },
   beforeUnmount() {
@@ -273,24 +241,6 @@ export default {
         }
       }
     }
-
-    .code {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      color: blue;
-      cursor: pointer;
-    }
-
-    .code:hover {
-      text-decoration: underline;
-    }
-  }
-
-  .no-shares-message {
-    display: flex;
-    margin-top: 64px;
-    font-size: 20px;
   }
 }
 </style>

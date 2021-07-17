@@ -16,6 +16,36 @@ describe('indices mutations', () => {
     })
   })
 
+  describe('setIndexTypes', () => {
+    it('adds indexTypes to the state', () => {
+      const indexTypes = ['some index type', 'other index type']
+      const state = {
+        indexTypes: [],
+      }
+
+      SUT.mutations.setIndexTypes(state, indexTypes)
+
+      expect(state).toEqual({
+        indexTypes: ['some index type', 'other index type'],
+      })
+    })
+  })
+
+  describe('setIndexTypeIndices', () => {
+    it('adds indexTypeIndices to the state', () => {
+      const indexTypeIndices = ['some index', 'other index']
+      const state = {
+        indexTypeIndices: [],
+      }
+
+      SUT.mutations.setIndexTypeIndices(state, indexTypeIndices)
+
+      expect(state).toEqual({
+        indexTypeIndices: ['some index', 'other index'],
+      })
+    })
+  })
+
   describe('setSector', () => {
     it('adds sector to the state', () => {
       const sector = 'some sector'
@@ -66,6 +96,7 @@ describe('indices mutations', () => {
       const state = {
         index: 'some',
         indexName: 'thing',
+        indexTypeIndices: ['test', 'test2'],
         sector: 'is',
         table: 'here',
       }
@@ -75,6 +106,7 @@ describe('indices mutations', () => {
       expect(state).toEqual({
         index: [],
         indexName: '',
+        indexTypeIndices: [],
         sector: [],
         table: [],
       })

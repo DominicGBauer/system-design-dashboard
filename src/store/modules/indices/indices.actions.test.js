@@ -29,6 +29,32 @@ describe('indices actions', () => {
     })
   })
 
+  describe('getIndexTypes', () => {
+    it('getIndexTypes action is run', async () => {
+      const commit = jest.fn()
+
+      await SUT.actions.getIndexTypes({ commit })
+
+      expect(url).toBe('/api/index/available-index-types')
+      expect(commit).toHaveBeenCalledWith('setIndexTypes', body)
+    })
+  })
+
+  describe('getIndexTypeIndices', () => {
+    it('getIndexTypeIndices action is run with a payload', async () => {
+      const payload = {
+        indexType: 'some index type',
+        date: 'some date',
+      }
+      const commit = jest.fn()
+
+      await SUT.actions.getIndexTypeIndices({ commit }, payload)
+
+      expect(url).toBe('/api/index/some index type?date=some date')
+      expect(commit).toHaveBeenCalledWith('setIndexTypeIndices', body)
+    })
+  })
+
   describe('getSector', () => {
     it('getSector action is run with payload', async () => {
       const payload = {
