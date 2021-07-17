@@ -4,6 +4,6 @@ import Home from '@/views/Home/Home.vue'
 describe('Home.vue', () => {
   it('renders the  page', () => {
     const wrapper = shallowMount(Home, {})
-    expect(wrapper.findComponent('Heading'))
+    expect(wrapper.findComponent(Home).exists()).toBe(true)
   })
 })
