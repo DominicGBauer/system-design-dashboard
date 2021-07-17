@@ -23,6 +23,7 @@ export default {
     const store = useStore()
     store.dispatch('shares/getShares')
     store.dispatch('dates/getDates')
+    store.dispatch('interestRates/getDates')
     store.dispatch('sectors/getSectors')
     store.dispatch('mobile/setIsMobile')
     return {

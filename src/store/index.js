@@ -4,6 +4,7 @@ import shares from './modules/shares/shares'
 import sectors from './modules/sectors/sectors'
 import indices from './modules/indices/indices'
 import mobile from './modules/mobile/mobile'
+import interestRates from './modules/interestRates/interestRates'
 
 const store = createStore({
   modules: {
@@ -12,6 +13,7 @@ const store = createStore({
     sectors,
     indices,
     mobile,
+    interestRates,
   },
   strict: process.env.NODE_ENV !== 'production',
 })
