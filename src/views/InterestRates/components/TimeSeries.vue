@@ -1,7 +1,7 @@
 <template>
   <div class="select-container">
     <p>
-      <strong>Select a<span v-if="data[0]"> new</span> tenor</strong>
+      <strong>Select a<span v-if="timeSeries[0]"> new</span> tenor</strong>
     </p>
     <VueMultiselect
       v-model="currentTenor"
@@ -13,7 +13,7 @@
     </VueMultiselect>
 
     <p>
-      <strong>Select a<span v-if="data[0]"> new</span> bond curve</strong>
+      <strong>Select a<span v-if="timeSeries[0]"> new</span> bond curve</strong>
     </p>
     <VueMultiselect
       v-model="currentBondCurve"
@@ -26,67 +26,51 @@
 
     <div class="button-container">
       <button
-        @click="handleClick(currentBondCurve, currentTenor)"
+        @click="getTimeSeries(currentBondCurve, currentTenor)"
         :disabled="!currentBondCurve || !currentTenor"
       >
-        <span v-if="!data[0]">Display Graph</span>
+        <span v-if="!timeSeries[0]">Display Graph</span>
         <span v-else>Update Graph</span>
       </button>
     </div>
   </div>
 
-  <Loader :isLoading="isLoading" />
-
-  <template v-if="data[0] && !isLoading">
+  <template v-if="timeSeries[0]">
     <div class="graph-container">
-      <LineGraph :data="data" :title="currentTenor" />
+      <LineGraph :data="timeSeries" :title="currentTenor" />
     </div>
   </template>
 </template>
 
 <script>
-import axios from 'axios'
 import VueMultiselect from 'vue-multiselect'
 import LineGraph from '@/components/LineGraph/LineGraph.vue'
-import Loader from '@/components/Loader/Loader.vue'
 import { TENORS, BOND_CURVES } from '@/constants'
+import { useStore } from 'vuex'
+import { computed } from '@vue/runtime-core'
 
 export default {
   name: 'TimeSeries',
   components: {
     VueMultiselect,
     LineGraph,
-    Loader,
+  },
+  setup() {
+    const store = useStore()
+
+    return {
+      timeSeries: computed(() => store.state.interestRates.timeSeries),
+      getTimeSeries: (bondCurve, tenor) =>
+        store.dispatch('interestRates/getTimeSeries', { bondCurve, tenor }),
+    }
   },
   data() {
     return {
-      data: [],
       BOND_CURVES,
       TENORS,
       currentTenor: '',
       currentBondCurve: '',
-      isLoading: false,
     }
-  },
-  methods: {
-    getInterestRateData(currentBondCurve, currentTenor) {
-      this.isLoading = true
-      axios
-        .get(
-          `/api/interest-rates?curve="${currentBondCurve}"&tenor=${currentTenor}`,
-        )
-        .then((response) => (this.data = this.transformData(response.data)))
-        .then((this.isLoading = false))
-    },
-    handleClick(currentBondCurve, currentTenor) {
-      this.getInterestRateData(currentBondCurve, currentTenor)
-    },
-    transformData(data) {
-      for (let item of data) {
-        item.value = [item.name, item.value]
-      }
-      return data
-    },
   },
 }
 </script>

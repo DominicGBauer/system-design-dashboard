@@ -1,7 +1,7 @@
 <template>
   <div class="select-container">
     <p>
-      <strong>Select a<span v-if="data[0]"> new</span> date</strong>
+      <strong>Select a<span v-if="yieldCurveSeries[0]"> new</span> date</strong>
     </p>
     <VueMultiselect
       v-model="currentDate"
@@ -14,7 +14,9 @@
     </VueMultiselect>
 
     <p>
-      <strong>Select a<span v-if="data[0]"> new</span> bond curve</strong>
+      <strong
+        >Select a<span v-if="yieldCurveSeries[0]"> new</span> bond curve</strong
+      >
     </p>
     <VueMultiselect
       v-model="currentBondCurve"
@@ -27,22 +29,20 @@
 
     <div class="button-container">
       <button
-        @click="handleClick(currentBondCurve, currentDate.date)"
+        @click="getYieldCurveSeries(currentBondCurve, currentDate.date)"
         :disabled="!currentBondCurve || !currentDate.date"
       >
-        <span v-if="!data[0]">Display Graph</span>
+        <span v-if="!yieldCurveSeries[0]">Display Graph</span>
         <span v-else>Update Graph</span>
       </button>
     </div>
   </div>
 
-  <Loader :isLoading="isLoading" />
-
-  <template v-if="data[0] && !isLoading && currentDate.date">
+  <template v-if="yieldCurveSeries[0] && currentDate.date">
     <div class="graph-container">
       <LineGraph
         :lineGraphType="'category'"
-        :data="data"
+        :data="yieldCurveSeries"
         :xAxisData="xAxisData"
         :title="`${currentDate.date} Yield Curve`"
       />
@@ -51,10 +51,8 @@
 </template>
 
 <script>
-import axios from 'axios'
 import VueMultiselect from 'vue-multiselect'
 import LineGraph from '@/components/LineGraph/LineGraph.vue'
-import Loader from '@/components/Loader/Loader.vue'
 import { BOND_CURVES } from '@/constants'
 import { useStore } from 'vuex'
 import { computed } from '@vue/runtime-core'
@@ -64,39 +62,34 @@ export default {
   components: {
     VueMultiselect,
     LineGraph,
-    Loader,
   },
   setup() {
     const store = useStore()
 
     return {
       dates: computed(() => store.state.interestRates.dates),
+      yieldCurveSeries: computed(
+        () => store.state.interestRates.yieldCurveSeries,
+      ),
+      getYieldCurveSeries: (bondCurve, date) =>
+        store.dispatch('interestRates/getYieldCurveSeries', {
+          bondCurve,
+          date,
+        }),
     }
   },
   data() {
     return {
-      data: [],
       currentDate: '',
       currentBondCurve: '',
-      isLoading: false,
       BOND_CURVES,
     }
   },
   computed: {
     xAxisData() {
-      return this.data.map((data) => data.name)
-    },
-  },
-  methods: {
-    getYieldCurveData(bondCurve, date) {
-      this.isLoading = true
-      axios
-        .get(`/api/interest-rates/yield-curve?curve=${bondCurve}&date=${date}`)
-        .then((response) => (this.data = response.data))
-        .then((this.isLoading = false))
-    },
-    handleClick(bondCurve, date) {
-      this.getYieldCurveData(bondCurve, date)
+      return this.yieldCurveSeries.map(
+        (yieldCurveSeries) => yieldCurveSeries.name,
+      )
     },
   },
 }

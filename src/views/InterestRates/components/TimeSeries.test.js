@@ -3,7 +3,7 @@ import TimeSeries from '@/views/InterestRates/components/TimeSeries.vue'
 import store from '@/store'
 
 describe('Home.vue', () => {
-  it('renders the Yield Curve', () => {
+  it('renders the Time Series', () => {
     const wrapper = shallowMount(TimeSeries, {
       global: {
         plugins: [store],
