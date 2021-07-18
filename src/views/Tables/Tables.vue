@@ -74,28 +74,28 @@
           class="table-container"
           @go-to-share="goToShare($event, currentDate)"
         />
-      </div>
-      <div class="download-buttons-container">
-        <ExcelDownloadButton
-          name="Specific Covariance Matrix"
-          text="Download Specific Covariance Matrix"
-          :data="portfolioStatistics.specific_covariance_matrix"
-        />
-        <ExcelDownloadButton
-          name="Systematic Covariance Matrix"
-          text="Download Systematic Covariance Matrix"
-          :data="portfolioStatistics.systematic_covariance_matrix"
-        />
-        <ExcelDownloadButton
-          name="Total Covariance Matrix"
-          text="Download Total Covariance Matrix"
-          :data="portfolioStatistics.total_covariance_matrix"
-        />
-        <ExcelDownloadButton
-          name="Correlation Matrix"
-          text="Download Correlation Matrix"
-          :data="portfolioStatistics.correlation_matrix"
-        />
+        <div class="download-buttons-container">
+          <ExcelDownloadButton
+            name="Specific Covariance Matrix"
+            text="Download Specific Covariance Matrix"
+            :data="portfolioStatistics.specific_covariance_matrix"
+          />
+          <ExcelDownloadButton
+            name="Systematic Covariance Matrix"
+            text="Download Systematic Covariance Matrix"
+            :data="portfolioStatistics.systematic_covariance_matrix"
+          />
+          <ExcelDownloadButton
+            name="Total Covariance Matrix"
+            text="Download Total Covariance Matrix"
+            :data="portfolioStatistics.total_covariance_matrix"
+          />
+          <ExcelDownloadButton
+            name="Correlation Matrix"
+            text="Download Correlation Matrix"
+            :data="portfolioStatistics.correlation_matrix"
+          />
+        </div>
       </div>
     </template>
   </div>
@@ -207,7 +207,7 @@ export default {
   }
 
   .button-container {
-    margin: 3rem 0 1rem 0;
+    margin: 3rem 0;
   }
 
   .table-container {
@@ -219,6 +219,7 @@ export default {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    margin-bottom: 3rem;
 
     .portfolio-statistics-container {
       margin-bottom: 4rem;

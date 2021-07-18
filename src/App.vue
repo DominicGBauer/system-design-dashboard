@@ -165,4 +165,16 @@ table th {
     border-bottom: 0;
   }
 }
+
+.red {
+  color: red;
+}
+
+.blue {
+  color: rgb(0, 153, 255);
+}
+
+.green {
+  color: rgb(99, 206, 99);
+}
 </style>

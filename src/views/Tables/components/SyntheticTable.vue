@@ -29,12 +29,14 @@
           scope="row"
           data-label="Code"
           @click="goToShare(entry.code)"
-          class="code"
+          class="code-container"
         >
-          <span>
-            {{ entry.code }}
-          </span>
-          <img src="@/assets/navigate-icon.svg" />
+          <div class="code">
+            <span>
+              {{ entry.code }}
+            </span>
+            <img src="@/assets/navigate-icon.svg" />
+          </div>
         </td>
         <td
           data-label="Beta"
@@ -72,6 +74,8 @@
 </template>
 
 <script>
+import { handleBetaColor } from '@/utils'
+
 export default {
   name: 'SyntheticTable',
   emits: ['goToShare'],
@@ -83,24 +87,7 @@ export default {
     },
   },
   methods: {
-    handleBetaColor(pValue, beta) {
-      let betaColor = ''
-      if (beta < 0) {
-        return (betaColor = 'red')
-      }
-      switch (true) {
-        case pValue < 0.01:
-          betaColor = 'green'
-          break
-        case pValue < 0.05:
-          betaColor = 'blue'
-          break
-        default:
-          break
-      }
-
-      return betaColor
-    },
+    handleBetaColor,
     goToShare(share) {
       return this.$emit('goToShare', share)
     },
@@ -128,27 +115,26 @@ export default {
   }
 }
 
-.code {
+.code-container {
+  @media (max-width: 800px) {
+    justify-content: space-between;
+    align-items: center;
+  }
+
   display: flex;
   justify-content: center;
   align-items: center;
   color: blue;
   cursor: pointer;
-}
 
-.code:hover {
-  text-decoration: underline;
-}
+  .code {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
 
-.red {
-  color: red;
-}
-
-.blue {
-  color: rgb(0, 153, 255);
-}
-
-.green {
-  color: rgb(99, 206, 99);
+  .code:hover {
+    text-decoration: underline;
+  }
 }
 </style>

@@ -3,13 +3,15 @@
   <div class="container">
     <Introduction />
     <Tables />
+    <Faq />
   </div>
 </template>
 
 <script>
 import Tables from '../Tables/Tables.vue'
-import Heading from '../../components/Heading/Heading.vue'
-import Introduction from '../../components/Introduction/Introduction.vue'
+import Heading from './components/Heading.vue'
+import Introduction from './components/Introduction.vue'
+import Faq from './components/Faq.vue'
 
 export default {
   name: 'Home',
@@ -17,6 +19,7 @@ export default {
     Heading,
     Introduction,
     Tables,
+    Faq,
   },
 }
 </script>

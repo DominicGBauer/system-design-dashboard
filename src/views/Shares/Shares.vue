@@ -115,9 +115,10 @@
 
 <script>
 import VueMultiselect from 'vue-multiselect'
-import LineGraph from '../../components/LineGraph/LineGraph.vue'
+import LineGraph from '@/components/LineGraph/LineGraph.vue'
 import { useStore } from 'vuex'
 import { computed } from '@vue/runtime-core'
+import { handleBetaColor } from '@/utils'
 
 export default {
   name: 'Shares',
@@ -145,11 +146,6 @@ export default {
       resetState: () => store.dispatch('shares/resetState'),
     }
   },
-  data() {
-    return {
-      betaColor: '',
-    }
-  },
   methods: {
     handleDisplayClick(share) {
       this.getShareTimeSeries(share)
@@ -163,24 +159,7 @@ export default {
     handleDateClick(share, date) {
       this.getShareTableInfo(share, date)
     },
-    handleBetaColor(pValue, beta) {
-      let betaColor = ''
-      if (beta < 0) {
-        return (betaColor = 'red')
-      }
-      switch (true) {
-        case pValue < 0.01:
-          betaColor = 'green'
-          break
-        case pValue < 0.05:
-          betaColor = 'blue'
-          break
-        default:
-          break
-      }
-
-      return betaColor
-    },
+    handleBetaColor,
   },
   beforeUnmount() {
     this.resetState()
@@ -245,18 +224,6 @@ export default {
       margin: 4px;
     }
   }
-}
-
-.red {
-  color: red;
-}
-
-.blue {
-  color: rgb(0, 153, 255);
-}
-
-.green {
-  color: rgb(99, 206, 99);
 }
 </style>
 

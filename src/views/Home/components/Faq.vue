@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div>
     <h1>FAQ</h1>
     <h2>How is beta computed?</h2>
     <p>
@@ -126,24 +126,16 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.container {
-  margin: 2rem 20%;
+h1 {
+  margin-bottom: 3rem;
+}
 
-  @media (max-width: 800px) {
-    margin: 2rem 10%;
-  }
+h2 {
+  text-align: left;
+}
 
-  h1 {
-    margin-bottom: 3rem;
-  }
-
-  h2 {
-    text-align: left;
-  }
-
-  p {
-    margin: 2rem 0;
-    text-align: left;
-  }
+p {
+  margin: 2rem 0;
+  text-align: left;
 }
 </style>

@@ -1,9 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Faq.vue renders the FAQ and it looks the same 1`] = `
-<div
-  class="container"
->
+<div>
   <h1>
     FAQ
   </h1>

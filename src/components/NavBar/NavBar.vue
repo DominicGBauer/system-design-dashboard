@@ -12,7 +12,6 @@
           <router-link to="/interest-rates" class="link"
             >Interest Rates</router-link
           >
-          <router-link to="/faq" class="link">FAQ</router-link>
           <router-link to="/worked-example" class="link"
             >Worked Example</router-link
           >
@@ -34,9 +33,6 @@
           </h6>
           <h6>
             <router-link to="/interest-rates">Interest Rates</router-link>
-          </h6>
-          <h6>
-            <router-link to="/faq">FAQ</router-link>
           </h6>
           <h6>
             <router-link to="/worked-example">Worked Example</router-link>

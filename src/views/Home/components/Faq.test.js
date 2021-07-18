@@ -1,5 +1,5 @@
 import { shallowMount } from '@vue/test-utils'
-import Faq from '@/views/Faq/Faq.vue'
+import Faq from './Faq.vue'
 
 describe('Faq.vue', () => {
   it('renders the Faq', () => {

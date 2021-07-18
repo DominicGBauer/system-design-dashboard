@@ -69,10 +69,12 @@
             scope="row"
             data-label="Code"
             @click="goToShare(entry.instrument, currentDate)"
-            class="code"
+            class="code-container"
           >
-            <span>{{ entry.instrument }} </span>
-            <img src="@/assets/navigate-icon.svg" />
+            <div class="code">
+              <span>{{ entry.instrument }} </span>
+              <img src="@/assets/navigate-icon.svg" />
+            </div>
           </td>
           <td data-label="% Traded">{{ entry.percentage_days_traded }}%</td>
           <td data-label="Data Points">{{ entry.data_points }}</td>
@@ -120,6 +122,7 @@ import VueMultiselect from 'vue-multiselect'
 import { useStore } from 'vuex'
 import { computed } from '@vue/runtime-core'
 import { useRouter } from 'vue-router'
+import { handleBetaColor } from '@/utils'
 
 export default {
   name: 'Sectors',
@@ -164,24 +167,7 @@ export default {
     },
   },
   methods: {
-    handleBetaColor(pValue, beta) {
-      let betaColor = ''
-      if (beta < 0) {
-        return (betaColor = 'red')
-      }
-      switch (true) {
-        case pValue < 0.01 && this.handleBetaEqualToZero(beta) !== 0:
-          betaColor = 'green'
-          break
-        case pValue < 0.05 && this.handleBetaEqualToZero(beta) !== 0:
-          betaColor = 'blue'
-          break
-        default:
-          break
-      }
-
-      return betaColor
-    },
+    handleBetaColor,
     handleBetaEqualToZero(beta) {
       return Math.round(beta * 10000) / 10000
     },
@@ -275,16 +261,26 @@ export default {
       }
     }
 
-    .code {
+    .code-container {
+      @media (max-width: 800px) {
+        justify-content: space-between;
+        align-items: center;
+      }
+
       display: flex;
       justify-content: center;
       align-items: center;
       color: blue;
       cursor: pointer;
-    }
 
-    .code:hover {
-      text-decoration: underline;
+      .code {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+      }
+      .code:hover {
+        text-decoration: underline;
+      }
     }
   }
 

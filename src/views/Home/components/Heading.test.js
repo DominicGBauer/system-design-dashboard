@@ -1,5 +1,5 @@
 import { shallowMount } from '@vue/test-utils'
-import Heading from '@/components/Heading/Heading.vue'
+import Heading from './Heading.vue'
 
 describe('Heading.vue', () => {
   it('renders the Heading text', () => {
