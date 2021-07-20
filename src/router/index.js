@@ -4,6 +4,7 @@ import WorkedExample from '@/views/WorkedExample/WorkedExample.vue'
 import InterestRates from '@/views/InterestRates/InterestRates.vue'
 import Shares from '@/views/Shares/Shares.vue'
 import Sectors from '@/views/Sectors/Sectors.vue'
+import Indices from '@/views/Indices/Indices.vue'
 
 const routes = [
   {
@@ -30,6 +31,11 @@ const routes = [
     path: '/sectors',
     name: 'Sectors',
     component: Sectors,
+  },
+  {
+    path: '/indices',
+    name: 'Indices',
+    component: Indices,
   },
 ]
 

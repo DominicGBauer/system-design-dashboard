@@ -26,6 +26,9 @@
         </router-link>
         <ul class="links-container">
           <h6>
+            <router-link to="/indices">Indices</router-link>
+          </h6>
+          <h6>
             <router-link to="/sectors">Sectors</router-link>
           </h6>
           <h6>

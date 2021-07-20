@@ -6,10 +6,11 @@ const getDefaultState = () => {
     indexName: '',
     sector: [],
     table: [],
+    indexTypeIndices: [],
   }
 }
 
-const state = getDefaultState()
+const state = { ...getDefaultState(), indexTypes: [] }
 
 const getters = {
   portfolioStatistics(state) {
@@ -27,6 +28,14 @@ const actions = {
   async getIndex({ commit }, payload) {
     const index = await newIndices.getIndex(payload)
     commit('setIndex', index)
+  },
+  async getIndexTypes({ commit }) {
+    const indexTypes = await newIndices.getIndexTypes()
+    commit('setIndexTypes', indexTypes)
+  },
+  async getIndexTypeIndices({ commit }, payload) {
+    const indices = await newIndices.getIndexTypeIndices(payload)
+    commit('setIndexTypeIndices', indices)
   },
   async getSector({ commit }, payload) {
     const sector = await newIndices.getSector(payload)
@@ -47,6 +56,12 @@ const actions = {
 const mutations = {
   setIndex(state, index) {
     state.index = index
+  },
+  setIndexTypes(state, indexTypes) {
+    state.indexTypes = indexTypes
+  },
+  setIndexTypeIndices(state, indexTypeIndices) {
+    state.indexTypeIndices = indexTypeIndices
   },
   setSector(state, sector) {
     state.sector = sector
